@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Saba</string>
+    <string name="image_onboarding">Image Onboarding</string>
+    <string name="indicator_1">Indicator 1</string>
+    <string name="indicator_2">Indicator 2</string>
+    <string name="indicator_3">Indicator 3</string>
+    <string name="image_splashscreen">Image Splashscreen</string>
+    <string name="button_image">Button Image</string>
 </resources>
