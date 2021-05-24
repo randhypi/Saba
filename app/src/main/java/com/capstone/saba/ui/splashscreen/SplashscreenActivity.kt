@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.capstone.saba.R
+import com.capstone.saba.ui.login.LoginActivity
 import com.capstone.saba.ui.onboarding.OnBoardingActivity
 
 @Suppress("DEPRECATION")
@@ -15,12 +16,30 @@ class SplashscreenActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
         Handler().postDelayed({
-            val intent = Intent(this, OnBoardingActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            when(getValueOnBoard()){
+                false->{
+                    val intent = Intent(this, OnBoardingActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                true->{
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+
+
         }, 3000)
     }
 
+
+ fun getValueOnBoard(): Boolean{
+     val sharedPreferences = getSharedPreferences("onboarding", MODE_PRIVATE)
+     return sharedPreferences.getBoolean("value", false)
+ }
 
 
 }

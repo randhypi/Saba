@@ -6,4 +6,13 @@
     <string name="indicator_3">Indicator 3</string>
     <string name="image_splashscreen">Image Splashscreen</string>
     <string name="button_image">Button Image</string>
+    <string name="masuk">MASUK</string>
+    <string name="atau">atau</string>
+    <string name="daftar">DAFTAR</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="image_login">Image Login</string>
+    <string name="saba">SABA</string>
+    <string name="lupa_password">Lupa Password?</string>
+    <string name="email">Email</string>
 </resources>
