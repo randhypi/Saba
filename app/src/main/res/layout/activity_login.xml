@@ -33,26 +33,28 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/til_username"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        color
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="43dp"
         android:layout_marginEnd="64dp"
-        app:hintTextColor="@color/blue_700"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxCornerRadiusBottomEnd="20dp"
-        app:boxCornerRadiusTopEnd="20dp"
         android:hint="@string/email"
-        app:boxStrokeColor="@color/blue_700"
-        app:startIconTint="@color/blue_700"
         app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/blue_700"
+        app:hintTextColor="@color/blue_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:startIconDrawable="@drawable/ic_person">
+        app:startIconDrawable="@drawable/ic_person"
+        app:startIconTint="@color/blue_700"
+        app:suffixTextColor="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputEmail"
@@ -61,34 +63,36 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/til_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="64dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxCornerRadiusBottomEnd="20dp"
-        app:boxCornerRadiusTopEnd="20dp"
         android:hint="@string/password"
-        app:startIconTint="@color/blue_700"
-        app:endIconTint="@color/blue_700"
-        app:boxStrokeColor="@color/blue_700"
         app:boxBackgroundColor="@color/white"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeColor="@color/blue_700"
+        app:endIconTint="@color/blue_700"
         app:hintTextColor="@color/blue_700"
-        app:endIconMode="password_toggle"
-        app:endIconCheckable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_username"
-        app:startIconDrawable="@drawable/ic_lock">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/blue_700"
+        app:startIconDrawable="@drawable/ic_lock"
+        app:startIconTint="@color/blue_700">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView

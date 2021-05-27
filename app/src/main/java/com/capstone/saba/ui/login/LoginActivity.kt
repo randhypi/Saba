@@ -14,15 +14,14 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth: FirebaseAuth
+        private lateinit var binding: ActivityLoginBinding
+        private lateinit var auth: FirebaseAuth
 
-
-    companion object{
+        companion object{
         val TAG = LoginActivity::class.java.simpleName
-    }
+        }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
 
@@ -32,10 +31,12 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         supportActionBar?.hide()
-        val email = binding.tilUsername.editText?.text.toString()
-        val password = binding.tilPassword.editText?.text.toString()
+
+
 
         binding.btnLogin.setOnClickListener{
+                val email = binding.inputEmail.text?.toString()?.trim()
+                val password = binding.inputPassword.text?.toString()?.trim()
             Log.d(TAG,"${email} dan $password")
 //            auth.signInWithEmailAndPassword("test@gmail.com","12345678")
 //                .addOnCompleteListener(this) { task ->
