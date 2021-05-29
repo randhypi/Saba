@@ -26,4 +26,7 @@
     <string name="selesai">Selesai</string>
     <string name="let_s_go">Lets Go......</string>
     <string name="image_finish">Image Finish</string>
+    <string name="next_button">next button</string>
+    <string name="assisten">Assisten</string>
+    <string name="home">Home</string>
 </resources>
