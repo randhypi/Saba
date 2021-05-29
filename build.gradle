@@ -21,6 +21,9 @@ buildscript {
     ext {
         //dependencies version
         nav_version = '2.3.5'
+        dagger_version = "2.29.1"
+        activity_ktx_version = "1.1.0"
+        fragment_ktx_version = "1.2.5"
     }
 }
 

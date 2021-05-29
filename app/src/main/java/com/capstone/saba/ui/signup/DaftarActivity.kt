@@ -3,17 +3,17 @@ package com.capstone.saba.ui.signup
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.capstone.saba.R
-import com.capstone.saba.databinding.ActivityDaftarBinding
+import com.capstone.saba.databinding.ActivitySignupBinding
 import com.capstone.saba.ui.signup.fragment.AFragment
 
 class DaftarActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityDaftarBinding
+    private lateinit var binding: ActivitySignupBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDaftarBinding.inflate(layoutInflater)
+        binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val aFragment = AFragment()

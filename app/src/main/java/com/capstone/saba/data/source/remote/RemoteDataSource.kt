@@ -9,8 +9,12 @@ import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.Flowable
 import io.reactivex.ObservableOnSubscribe
 import io.reactivex.internal.operators.observable.ObservableAllSingle
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteDataSource constructor(
+
+@Singleton
+class RemoteDataSource @Inject  constructor(
     private val db: FirebaseFirestore,
     private val auth: FirebaseAuth
 ) {
@@ -28,10 +32,16 @@ class RemoteDataSource constructor(
         auth.createUserWithEmailAndPassword(email, password)
     }
 
-    fun signInWithEmail(email: String, password: String): Flowable<User> {
+    fun signInWithEmail(email: String, password: String) {
+
+        auth.signInWithEmailAndPassword(email, password)
+
+
+    }
+
+    fun getDataUser(): Flowable<User>{
         var user = User()
         val currentUser = auth.currentUser
-        auth.signInWithEmailAndPassword(email, password)
 
         val userId = currentUser?.uid
         val docRef = db.collection("users").document(userId.toString())

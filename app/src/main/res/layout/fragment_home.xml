@@ -28,6 +28,7 @@
         android:layout_marginTop="26dp"
         android:layout_marginEnd="16dp"
         android:scaleType="centerCrop"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/tv_greetings"
@@ -35,44 +36,95 @@
         tools:src="@color/blue_700" />
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_greetings"
-        tools:layout_editor_absoluteX="-16dp">
-
-    </androidx.viewpager2.widget.ViewPager2>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
+    <LinearLayout
+        android:id="@+id/tab_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
-        android:elevation="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_greetings"
-        app:tabTextColor="@android:color/white">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/tv_greetings">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabs_assisten"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/blue_700"
-            tools:text="Assisten"
-            android:elevation="20dp"
-            android:text="@string/assisten" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_assisten"
+            android:layout_width="145dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="26dp"
+            android:background="@drawable/round_border_home_tab"
+            app:cardCornerRadius="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="24dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabs_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home"
-            android:elevation="20dp"
-            tools:text="Home"
-            />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageAssisten"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/logo_assisten" />
+
+                <TextView
+                    android:id="@+id/tv_assisten"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/assisten"
+                    android:textAppearance="?android:attr/textAppearanceButton"
+                    android:textColor="#8A8181"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
 
-    </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btn_home"
+            android:layout_width="145dp"
+            android:layout_height="35dp"
+            app:cardElevation="24dp"
+            android:clickable="true"
+            app:cardCornerRadius="20dp"
+            android:focusable="true"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image_home"
+                android:layout_width="28dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="13dp"
+                android:src="@drawable/ic_home" />
+
+            <TextView
+                android:id="@+id/tv_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/home"
+                android:textAppearance="?android:attr/textAppearanceButton"
+                android:textColor="#8A8181"
+                android:textSize="18sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

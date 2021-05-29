@@ -7,7 +7,9 @@ interface IUserRepository {
 
     fun signUpWithEmail(email: String,password: String)
 
-    fun signInWithEmail(email: String,password: String) : Flowable<User>
+    fun signInWithEmail(email: String,password: String)
+
+    fun getDataUser(): Flowable<User>
 
     fun signOut()
 

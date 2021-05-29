@@ -38,22 +38,7 @@ class LoginActivity : AppCompatActivity() {
                 val email = binding.inputEmail.text?.toString()?.trim()
                 val password = binding.inputPassword.text?.toString()?.trim()
             Log.d(TAG,"${email} dan $password")
-//            auth.signInWithEmailAndPassword("test@gmail.com","12345678")
-//                .addOnCompleteListener(this) { task ->
-//                    if (task.isSuccessful) {
-//                        // Sign in success, update UI with the signed-in user's information
-//                        Log.d(TAG, "signInWithEmail:success")
-//                        val user = auth.currentUser
-//                        Log.d(TAG,user?.email.toString() )
-//                        Toast.makeText(baseContext, user?.email.toString(),
-//                            Toast.LENGTH_SHORT).show()
-//                    } else {
-//                        // If sign in fails, display a message to the user.
-//                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-//                        Toast.makeText(baseContext, "Authentication failed.",
-//                            Toast.LENGTH_SHORT).show()
-//                    }
-//                }
+
         }
 
         binding.btnDaftar.setOnClickListener{

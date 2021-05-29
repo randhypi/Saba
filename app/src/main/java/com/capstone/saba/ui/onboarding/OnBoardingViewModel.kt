@@ -8,7 +8,7 @@ import com.capstone.saba.utils.DummyOnBoarding
 
 class OnBoardingViewModel : ViewModel() {
 
-val dataOnBoarding = MutableLiveData<OnBoardingModel>()
+    val dataOnBoarding = MutableLiveData<OnBoardingModel>()
 
     fun getOnBoarding(): LiveData<List<OnBoardingModel>> = MutableLiveData(DummyOnBoarding.onBoardingDummy())
 }

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.saba.R
-import com.capstone.saba.databinding.ActivityMainBinding
 import com.capstone.saba.databinding.ItemOnboardingBinding
 
 class ViewPagerAdapter(): RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>() {
