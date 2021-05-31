@@ -40,30 +40,36 @@
             android:id="@+id/rg_gender_signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:backgroundTint="@color/blue_700">
 
             <RadioButton
                 android:id="@+id/rb_male_signUp"
                 android:layout_width="248dp"
                 android:layout_height="wrap_content"
-                android:textSize="32sp"
                 android:backgroundTint="@color/blue_700"
-                android:text="@string/laki_laki" />
+                android:checked="true"
+                android:enabled="true"
+                app:buttonTint="@color/blue_700"
+                android:text="@string/laki_laki"
+                android:textSize="32sp" />
 
             <RadioButton
                 android:id="@+id/rb_female_signUp"
                 android:layout_width="248dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
-                android:textSize="32sp"
-                android:enabled="true"
                 android:backgroundTint="@color/blue_700"
-                android:text="@string/perempuan" />
+                android:checked="false"
+                app:buttonTint="@color/blue_700"
+                android:enabled="true"
+                android:text="@string/perempuan"
+                android:textSize="32sp"
+                tools:backgroundTint="@color/blue_700" />
 
 
         </RadioGroup>
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -71,7 +77,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
-        android:layout_marginBottom="123dp"
+        android:layout_marginBottom="103dp"
+        android:elevation="24dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +116,6 @@
             tools:src="@drawable/ic_indicator_on" />
 
     </LinearLayout>
-
 
     <ImageButton
         android:id="@+id/img_button_back_d"

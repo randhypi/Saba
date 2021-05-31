@@ -3,26 +3,32 @@ package com.capstone.saba.ui.onboarding
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.viewpager2.widget.ViewPager2
+import com.capstone.saba.MainActivity
+import com.capstone.saba.MyApplication
 import com.capstone.saba.R
 import com.capstone.saba.databinding.ActivityOnBoardingBinding
-import com.capstone.saba.ui.login.LoginActivity
+import com.capstone.saba.ui.home.HomeFragment
+import com.capstone.saba.ui.login.LoginFragment
 import com.capstone.saba.vm.ViewModelFactory
+import javax.inject.Inject
 
 class OnBoardingActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOnBoardingBinding
     private lateinit var adapter: ViewPagerAdapter
 
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val onBoardingViewModel: OnBoardingViewModel by viewModels {factory}
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val factory = ViewModelFactory.getInstance(this)
-        val viewModel = ViewModelProvider(this, factory)[OnBoardingViewModel::class.java]
-
+        (this.application as MyApplication).appComponent.inject(this)
         binding = ActivityOnBoardingBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -32,7 +38,7 @@ class OnBoardingActivity : AppCompatActivity() {
         val viewPager: ViewPager2 = findViewById(R.id.view_pager_onboarding)
 
 
-        viewModel.getOnBoarding().observe(this, { data ->
+        onBoardingViewModel.getOnBoarding().observe(this, { data ->
             adapter.setData(data)
         })
 
@@ -58,7 +64,7 @@ class OnBoardingActivity : AppCompatActivity() {
                     editorShared.putBoolean("value",true)
                     editorShared.apply()
 
-                    val moveIntent = Intent(this@OnBoardingActivity,LoginActivity::class.java)
+                    val moveIntent = Intent(this@OnBoardingActivity, MainActivity::class.java)
                     startActivity(moveIntent)
                     finish()
                 }

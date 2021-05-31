@@ -7,30 +7,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.navigation.findNavController
 import com.capstone.saba.R
-import com.capstone.saba.ui.login.LoginActivity
+import com.capstone.saba.databinding.FragmentDBinding
+import com.capstone.saba.databinding.FragmentEBinding
+import com.capstone.saba.ui.login.LoginFragment
 
 
-class EFragment : Fragment(), View.OnClickListener {
+class EFragment : Fragment() {
+
+    private var _binding: FragmentEBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_e, container, false)
+        _binding = FragmentEBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val btnNext: ImageButton = view.findViewById(R.id.img_button_next)
-        btnNext.setOnClickListener(this)
-    }
 
-    override fun onClick(v: View) {
-        if (v.id == R.id.img_button_next){
-            val intent = Intent(context, LoginActivity::class.java)
-            startActivity(intent)
+        binding.btnNextE.setOnClickListener {
+            view.findNavController().navigate(R.id.action_EFragment_to_LoginFragment)
         }
     }
+
 }

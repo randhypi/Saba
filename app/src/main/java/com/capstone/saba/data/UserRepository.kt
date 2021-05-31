@@ -15,34 +15,23 @@ import javax.inject.Singleton
 
 
 @Singleton
-class UserRepository @Inject constructor(private val remoteDataSource: RemoteDataSource): IUserRepository {
+class UserRepository @Inject constructor(private val remoteDataSource: RemoteDataSource) :
+    IUserRepository {
+
+
     override fun signUpWithEmail(email: String, password: String) {
-        remoteDataSource.signUpWithEmail(email,password)
+        remoteDataSource.signUpWithEmail(email, password)
     }
 
 
-    override fun signInWithEmail(email: String, password: String) =
-        remoteDataSource.signInWithEmail(email,password)
+    override fun signInWithEmail(email: String, password: String) : Flowable<Boolean> =
+        remoteDataSource.signInWithEmail(email, password)
 
 
     @SuppressLint("CheckResult")
-    override fun getDataUser():Flowable<User> {
-
-        val result = PublishSubject.create<User>()
-
+    override fun getDataUser(): Flowable<User> =
         remoteDataSource.getDataUser()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                result.onNext(it)
-            }, { error ->
-                Log.e("RemoteDataSource", error.toString())
-            })
 
-
-        return result.toFlowable(BackpressureStrategy.BUFFER)
-
-    }
 
 
     override fun signOut() = remoteDataSource.signOut()

@@ -1,4 +1,4 @@
-package com.capstone.saba.ui.home
+package com.capstone.saba.ui.myaccount
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
@@ -7,6 +7,7 @@ import com.capstone.saba.domain.model.User
 import com.capstone.saba.domain.usecase.UserUseCase
 import javax.inject.Inject
 
-class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase) : ViewModel() {
+class MyAccountViewModel @Inject constructor(private val userUseCase: UserUseCase) : ViewModel() {
     fun getData(): LiveData<User> =  LiveDataReactiveStreams.fromPublisher(userUseCase.getDataUser())
+    fun signOut() = userUseCase.signOut()
 }

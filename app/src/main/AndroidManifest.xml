@@ -10,8 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Saba">
-        <activity android:name=".ui.signup.DaftarActivity"></activity>
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.signup.DaftarActivity" />
         <activity android:name=".ui.onboarding.OnBoardingActivity" />
         <activity android:name=".ui.splashscreen.SplashscreenActivity">
             <intent-filter>

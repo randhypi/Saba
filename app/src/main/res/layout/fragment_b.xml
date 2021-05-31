@@ -24,9 +24,7 @@
         android:id="@+id/view2"
         android:layout_width="363dp"
         android:layout_height="400dp"
-        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginBottom="146dp"
         android:background="@drawable/round_bg_daftar"
         android:elevation="40dp"
@@ -35,9 +33,9 @@
         android:paddingBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6">
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.777">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_nama"
