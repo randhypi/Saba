@@ -34,4 +34,5 @@
     <string name="password_is_null">Isi password anda dahulu</string>
     <string name="sign_out">Sign out</string>
     <string name="kami_akan_membantu_anda_membuat_akun_baru_ndengan_sangat_mudah">Kami akan membantu anda membuat akun baru:&#10;Dengan sangat mudah.</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
 </resources>
