@@ -4,8 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.capstone.saba.MainActivity
 import com.capstone.saba.R
-import com.capstone.saba.ui.login.LoginActivity
 import com.capstone.saba.ui.onboarding.OnBoardingActivity
 
 @Suppress("DEPRECATION")
@@ -24,7 +24,7 @@ class SplashscreenActivity : AppCompatActivity() {
                     finish()
                 }
                 true->{
-                    val intent = Intent(this, LoginActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }

@@ -51,12 +51,12 @@
             android:layout_height="35dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/round_border_home_tab"
-            app:cardCornerRadius="20dp"
             android:clickable="true"
             android:focusable="true"
-            app:cardElevation="24dp"
             android:paddingStart="12dp"
-            android:paddingEnd="12dp">
+            android:paddingEnd="12dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,7 +68,8 @@
                     android:id="@+id/imageAssisten"
                     android:layout_width="28dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/logo_assisten" />
+                    android:contentDescription="@string/assisten"
+                    android:src="@drawable/ic_assisten_on" />
 
                 <TextView
                     android:id="@+id/tv_assisten"
@@ -78,7 +79,7 @@
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/assisten"
                     android:textAppearance="?android:attr/textAppearanceButton"
-                    android:textColor="#8A8181"
+                    android:textColor="@color/blue_700"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -86,15 +87,15 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/btn_home"
             android:layout_width="145dp"
             android:layout_height="35dp"
-            app:cardElevation="24dp"
             android:clickable="true"
-            app:cardCornerRadius="20dp"
             android:focusable="true"
-            android:gravity="center">
+            android:gravity="center"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,26 +103,27 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/image_home"
-                android:layout_width="28dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="13dp"
-                android:src="@drawable/ic_home" />
+                <ImageView
+                    android:id="@+id/image_home"
+                    android:layout_width="28dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="13dp"
+                    android:contentDescription="@string/home"
+                    android:src="@drawable/ic_home" />
 
-            <TextView
-                android:id="@+id/tv_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="@string/home"
-                android:textAppearance="?android:attr/textAppearanceButton"
-                android:textColor="#8A8181"
-                android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/tv_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="@string/home"
+                    android:textAppearance="?android:attr/textAppearanceButton"
+                    android:textColor="#AAACAE"
+                    android:textSize="18sp" />
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
     </LinearLayout>

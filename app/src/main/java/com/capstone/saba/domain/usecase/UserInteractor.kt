@@ -14,8 +14,9 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
     override fun signInWithEmail(email: String, password: String) =
         userRepository.signInWithEmail(email,password)
 
-    override fun getDataUser(): Flowable<User> =
-        userRepository.getDataUser()
+    override fun getDataUser() = userRepository.getDataUser()
+
+
 
 
     override fun signOut() = userRepository.signOut()
