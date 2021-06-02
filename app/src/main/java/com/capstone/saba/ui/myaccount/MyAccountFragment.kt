@@ -51,7 +51,7 @@ class MyAccountFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnSignOut.setOnClickListener{
+        binding.btnSignout.setOnClickListener{
             myAccountViewModel.signOut()
             view.findNavController().navigate(R.id.action_myAccountFragment_to_loginFragment)
         }

@@ -65,6 +65,9 @@ class HomeFragment : Fragment() {
                 binding?.imageView2.setOnClickListener {
                     view?.findNavController()?.navigate(R.id.action_homeFragment_to_myAccountFragment)
                 }
+                binding.btnHome.setOnClickListener{
+                    view?.findNavController()?.navigate(R.id.action_homeFragment_to_notebookFragment)
+                }
             }else if(data?.name.equals("null")){
                 view?.findNavController()?.navigate(R.id.action_homeFragment_to_loginFragment)
                 Log.d(TAG ,"$data navigate")
