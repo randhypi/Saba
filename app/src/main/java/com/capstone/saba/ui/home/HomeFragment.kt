@@ -32,27 +32,32 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels { factory }
 
+    @SuppressLint("SetTextI18n")
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireActivity().application as MyApplication).appComponent.inject(this)
+
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        homeViewModel.getData().observe(this, { data ->
-            Log.d(TAG, "$data luar")
 
-            if (!data?.name.equals("null")) {
+
+    @SuppressLint("SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (getValueAuth() == true){
+            homeViewModel.getData().observe(viewLifecycleOwner, { data ->
+                Log.d(TAG, "$data luar")
                 Log.d(TAG, data.toString())
                 binding.tvGreetings.text = "Hi,\n${data?.name?.split(" ")?.get(0)}"
                 Glide
@@ -62,48 +67,18 @@ class HomeFragment : Fragment() {
                     .placeholder(R.drawable.ic_downloading)
                     .into(binding.imageView2)
 
-                binding?.imageView2.setOnClickListener {
-                    view?.findNavController()?.navigate(R.id.action_homeFragment_to_myAccountFragment)
+                binding.imageView2.setOnClickListener {
+                    view.findNavController().navigate(R.id.action_homeFragment_to_myAccountFragment)
                 }
-            }else if(data?.name.equals("null")){
-                view?.findNavController()?.navigate(R.id.action_homeFragment_to_loginFragment)
-                Log.d(TAG ,"$data navigate")
-
-            }
-        })
-
-    }
 
 
-    @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+            })
+        }else if(getValueAuth() == false){
+            view.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+        }
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-
-
-//        homeViewModel.getData().observe(viewLifecycleOwner, { data ->
-//            Log.d(TAG, "$data luar")
-//
-//            if (!data?.name.equals("null")) {
-//                Log.d(TAG, data.toString())
-//                binding.tvGreetings.text = "Hi,\n${data?.name?.split(" ")?.get(0)}"
-//                Glide
-//                    .with(view)
-//                    .load(data?.urlAva)
-//                    .centerCrop()
-//                    .placeholder(R.drawable.ic_downloading)
-//                    .into(binding.imageView2)
-//
-//                binding.imageView2.setOnClickListener {
-//                    view.findNavController().navigate(R.id.action_homeFragment_to_myAccountFragment)
-//                }
-//            }else if(data?.name.equals("null")){
-//                view.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
-//                Log.d(TAG ,"$data navigate")
-//
-//            }
-//        })
 
     }
 
@@ -113,5 +88,11 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+
+    fun getValueAuth(): Boolean? {
+        val sharedPreferences =
+            activity?.getSharedPreferences("auth", AppCompatActivity.MODE_PRIVATE)
+        return sharedPreferences?.getBoolean("value",false)
+    }
 
 }

@@ -5,7 +5,7 @@ data class User(
     val name: String = "",
     val urlAva: String = "",
     val email: String = "",
-    val password: String?= "",
+    val password: String= "",
     val birthOfDate: String = "",
     val gender: String = ""
 )

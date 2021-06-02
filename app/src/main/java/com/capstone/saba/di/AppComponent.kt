@@ -4,6 +4,7 @@ import com.capstone.saba.ui.home.HomeFragment
 import com.capstone.saba.ui.login.LoginFragment
 import com.capstone.saba.ui.myaccount.MyAccountFragment
 import com.capstone.saba.ui.onboarding.OnBoardingActivity
+import com.capstone.saba.ui.signup.fragment.*
 import dagger.Component
 
 @AppScope
@@ -21,4 +22,9 @@ interface AppComponent {
     fun inject(fragment: LoginFragment)
     fun inject(activity: OnBoardingActivity)
     fun inject(fragment: MyAccountFragment)
+    fun inject(fragment: AFragment)
+    fun inject(fragment: BFragment)
+    fun inject(fragment: CFragment)
+    fun inject(fragment: DFragment)
+    fun inject(fragment: EFragment)
 }

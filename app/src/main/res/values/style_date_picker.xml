@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DatePicker">
+        <!-- Text color -->
+        <item name="android:textColorPrimary">@color/blue_700</item>
+        <!-- Divider color -->
+        <item name="colorControlNormal">@color/blue_700</item>
+
+    </style>
+
+</resources>

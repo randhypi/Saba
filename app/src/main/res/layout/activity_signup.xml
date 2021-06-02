@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/frame_container_signup"
     android:background="@color/blue_200"
-    tools:context=".ui.signup.DaftarActivity"
+    tools:context=".ui.signup.SignUpActivity"
     tools:ignore="MissingDefaultResource">
 
 </FrameLayout>

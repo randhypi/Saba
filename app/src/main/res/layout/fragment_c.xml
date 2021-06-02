@@ -36,14 +36,12 @@
 
     <DatePicker
         android:id="@+id/datePicker"
+        android:theme="@style/DatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:datePickerMode="spinner"
         android:calendarViewShown="false"
-        android:minDate="2/20/2000"
-        android:backgroundTint="@color/blue_700"
-        android:calendarTextColor="@color/blue_700"
-        android:outlineAmbientShadowColor="@color/blue_700"
+        android:datePickerMode="spinner"
+        android:minDate="2/20/1945"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintStart_toStartOf="@+id/view2"

@@ -1,7 +1,6 @@
 package com.capstone.saba.data.source.remote
 
 import android.util.Log
-import android.widget.Toast
 import com.capstone.saba.domain.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -9,7 +8,6 @@ import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.subjects.PublishSubject
-import java.util.concurrent.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -25,21 +23,53 @@ class RemoteDataSource @Inject constructor(
     }
 
 
-    internal fun runAll() {
-        signInWithEmail("randhypradanairsan@gmail.com", "12345678")
-    }
-
-    fun signUpWithEmail(email: String, password: String) {
+    fun signUpWithEmail(
+        email: String,
+        password: String,
+        name: String,
+        gender: String,
+        birthOfDate: String,
+        urlAva: String
+    ): Flowable<Boolean> {
+        val result = PublishSubject.create<Boolean>()
         auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                val currentUser = auth.currentUser
+                val user = User(
+                    id = currentUser?.uid.toString(),
+                    email = email,
+                    gender = gender,
+                    name = name,
+                    birthOfDate = birthOfDate,
+                    urlAva = urlAva,
+                    password = password
+                )
+
+                Log.d("SIGN UP","${currentUser?.uid} $user")
+                currentUser?.uid?.let {
+                    db.collection("users").document(it)
+                        .set(user)
+                        .addOnSuccessListener {
+                            result.onNext(true)
+
+                        }
+                        .addOnFailureListener { e ->
+                            result.onNext(false)
+                            Log.w(TAG, "Error writing document", e)
+                        }
+                }
+            }
+        return result.toFlowable(BackpressureStrategy.BUFFER)
     }
 
     fun signInWithEmail(email: String, password: String): Flowable<Boolean> {
 
-        var result = PublishSubject.create<Boolean>()
+        val result = PublishSubject.create<Boolean>()
 
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-               result.onNext(task.isSuccessful)
+                result.onNext(task.isSuccessful)
+
             }
 
         return result.toFlowable(BackpressureStrategy.BUFFER)
@@ -47,7 +77,7 @@ class RemoteDataSource @Inject constructor(
     }
 
     fun getDataUser(): Flowable<User> {
-        var user = PublishSubject.create<User>()
+        val user = PublishSubject.create<User>()
         val currentUser = auth.currentUser
 
         val userId = currentUser?.uid

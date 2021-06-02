@@ -28,6 +28,7 @@
         android:layout_marginBottom="146dp"
         android:background="@drawable/round_bg_daftar"
         android:elevation="40dp"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
@@ -59,31 +60,6 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputNama"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_username"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="232dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|center_horizontal|center_vertical"
-            android:layout_marginTop="10dp"
-            android:hint="@string/username"
-            app:boxBackgroundColor="@color/white"
-            app:boxCornerRadiusBottomEnd="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxStrokeColor="@color/blue_700"
-            app:hintTextColor="@color/blue_700"
-            app:startIconDrawable="@drawable/ic_person"
-            app:startIconTint="@color/blue_700"
-            app:suffixTextColor="@color/white">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -149,7 +125,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center|center_horizontal|center_vertical"
             android:layout_marginTop="10dp"
-            android:hint="@string/password"
+            android:hint="@string/confirm_password"
             app:boxBackgroundColor="@color/white"
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusBottomStart="8dp"
@@ -238,7 +214,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:backgroundTint="@color/blue_700"
         android:contentDescription="@string/next_button"
         android:src="@drawable/ic_east"
         app:fabSize="normal"
@@ -249,7 +224,9 @@
         app:layout_constraintTop_toBottomOf="@+id/view2"
         app:layout_constraintVertical_bias="1.0"
         app:maxImageSize="44dp"
-        app:tint="@color/white" />
+        android:enabled="false"
+        style="@style/fab_off"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

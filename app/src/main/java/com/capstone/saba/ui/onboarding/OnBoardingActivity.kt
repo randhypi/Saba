@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.core.content.edit
 import androidx.viewpager2.widget.ViewPager2
 import com.capstone.saba.MainActivity
 import com.capstone.saba.MyApplication
@@ -60,9 +61,10 @@ class OnBoardingActivity : AppCompatActivity() {
                 }
                 2 ->{
                     val sharedPreferences = getSharedPreferences("onboarding", MODE_PRIVATE)
-                    val editorShared = sharedPreferences.edit()
-                    editorShared.putBoolean("value",true)
-                    editorShared.apply()
+                  sharedPreferences.edit{
+                      putBoolean("value",true)
+                  }
+
 
                     val moveIntent = Intent(this@OnBoardingActivity, MainActivity::class.java)
                     startActivity(moveIntent)

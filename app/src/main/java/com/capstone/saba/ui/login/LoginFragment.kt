@@ -1,6 +1,7 @@
 package com.capstone.saba.ui.login
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -8,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -18,6 +21,7 @@ import com.capstone.saba.databinding.FragmentLoginBinding
 import com.capstone.saba.vm.ViewModelFactory
 import com.jakewharton.rxbinding2.widget.RxTextView
 import javax.inject.Inject
+import kotlin.system.exitProcess
 
 
 class LoginFragment : Fragment() {
@@ -27,7 +31,7 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
 
     companion object {
-        val TAG = LoginFragment::class.java.simpleName
+        val TAG: String = LoginFragment::class.java.simpleName
     }
 
     @Inject
@@ -35,14 +39,18 @@ class LoginFragment : Fragment() {
 
     private val loginViewModel: SignInViewModel by viewModels { factory }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).appComponent.inject(this)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     @SuppressLint("CheckResult")
@@ -50,9 +58,14 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity().applicationContext as MyApplication).appComponent.inject(this)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        (activity as AppCompatActivity?)!!.onBackPressedDispatcher.addCallback(this) {
+            exitProcess(0)
+        }
+
 
         val emailStream = RxTextView.textChanges(binding.inputEmail)
-            .skipInitialValue()
+            .skip(7)
             .map { email ->
                 !Patterns.EMAIL_ADDRESS.matcher(email).matches()
             }
@@ -71,7 +84,7 @@ class LoginFragment : Fragment() {
             textPassword(it)
         }
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+
 
         binding.btnLogin.setOnClickListener {
             val email = binding.inputEmail.text?.toString()?.trim()
@@ -81,20 +94,30 @@ class LoginFragment : Fragment() {
             if (showFieldIfNull().equals(false)) {
                 loginViewModel.signIn(email.toString(), password.toString())
                     .observe(viewLifecycleOwner, { value ->
-                        if (value) view.findNavController()
-                            .navigate(R.id.action_loginFragment_to_HomeFragment)
-                        else
+                        if (value) {
+                            view.findNavController()
+                                .navigate(R.id.action_loginFragment_to_HomeFragment)
+                            val sharedPreferences = activity?.getSharedPreferences(
+                                "auth",
+                                AppCompatActivity.MODE_PRIVATE
+                            )
+                            sharedPreferences?.edit {
+                                putBoolean("value", true)
+                            }
+                        } else {
                             Toast.makeText(
                                 context,
                                 "Mungkin email atau password anda salah",
-                                Toast.LENGTH_LONG).show()
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                     })
             }
         }
 
 
 
-        binding.btnDaftar.setOnClickListener{
+        binding.btnDaftar.setOnClickListener {
             view.findNavController()
                 .navigate(R.id.action_loginFragment_to_AFragment)
         }

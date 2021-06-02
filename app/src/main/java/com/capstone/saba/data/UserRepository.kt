@@ -1,15 +1,10 @@
 package com.capstone.saba.data
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.capstone.saba.data.source.remote.RemoteDataSource
 import com.capstone.saba.domain.model.User
 import com.capstone.saba.domain.repository.IUserRepository
-import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.PublishSubject
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,9 +14,14 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
     IUserRepository {
 
 
-    override fun signUpWithEmail(email: String, password: String) {
-        remoteDataSource.signUpWithEmail(email, password)
-    }
+    override fun signUpWithEmail(email: String,
+                                 password: String,
+                                 name: String,
+                                 gender: String,
+                                 birthOfDate: String,
+                                 urlAva: String): Flowable<Boolean> =
+        remoteDataSource.signUpWithEmail(email, password,name,gender,birthOfDate,urlAva)
+
 
 
     override fun signInWithEmail(email: String, password: String) : Flowable<Boolean> =

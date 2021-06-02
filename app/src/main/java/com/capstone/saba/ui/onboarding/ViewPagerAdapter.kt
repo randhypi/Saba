@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.capstone.saba.R
 import com.capstone.saba.databinding.ItemOnboardingBinding
 
-class ViewPagerAdapter(): RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>() {
+class ViewPagerAdapter : RecyclerView.Adapter<ViewPagerAdapter.PagerViewHolder>() {
 
 
     private val mData = ArrayList<OnBoardingModel>()

@@ -5,6 +5,7 @@ import com.capstone.saba.ui.home.HomeViewModel
 import com.capstone.saba.ui.login.SignInViewModel
 import com.capstone.saba.ui.myaccount.MyAccountViewModel
 import com.capstone.saba.ui.onboarding.OnBoardingViewModel
+import com.capstone.saba.ui.signup.SignUpViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -33,5 +34,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MyAccountViewModel::class)
     abstract fun bindMyAccountViewModel(viewModel: MyAccountViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SignUpViewModel::class)
+    abstract fun bindSignUpViewModel(viewModel: SignUpViewModel): ViewModel
 
 }
