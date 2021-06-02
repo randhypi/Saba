@@ -39,4 +39,7 @@
     <string name="nama_tidak_boleh_kosong">Nama tidak boleh kosong</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
+
+    <string name="todo">To Do</string>
+    <string name="note">Note</string>
 </resources>
