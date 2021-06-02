@@ -1,9 +1,7 @@
 package com.capstone.saba.domain.usecase
 
 
-import com.capstone.saba.domain.model.User
 import com.capstone.saba.domain.repository.IUserRepository
-import io.reactivex.Flowable
 import javax.inject.Inject
 
 class UserInteractor @Inject constructor(private val userRepository: IUserRepository): UserUseCase {
@@ -21,8 +19,8 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun getDataUser() = userRepository.getDataUser()
 
-
-
-
     override fun signOut() = userRepository.signOut()
+    override fun getTodo() = userRepository.getTodo()
+
+
 }

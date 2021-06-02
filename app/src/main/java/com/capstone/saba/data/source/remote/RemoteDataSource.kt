@@ -1,6 +1,7 @@
 package com.capstone.saba.data.source.remote
 
 import android.util.Log
+import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -82,8 +83,7 @@ class RemoteDataSource @Inject constructor(
 
         val userId = currentUser?.uid
         val docRef = db.collection("users").document(userId.toString())
-        docRef.get()
-            .addOnSuccessListener { document ->
+        docRef.addSnapshotListener{ document,e ->
                 if (document != null) {
                     Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                     val userData = document.toObject<User>()
@@ -102,15 +102,34 @@ class RemoteDataSource @Inject constructor(
                     Log.d(TAG, "No such document")
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "get failed with ", exception)
-            }
+
 
         return user.toFlowable(BackpressureStrategy.BUFFER)
     }
 
 
     fun signOut() = auth.signOut()
+
+    fun getNoteTodo(): Flowable<Todo> {
+        val todo = PublishSubject.create<Todo>()
+        val currentUser = auth.currentUser
+
+        val userId = currentUser?.uid
+        val docRef = db.collection("users").document(userId.toString())
+        docRef.addSnapshotListener{ document,e ->
+            if (document != null) {
+                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                Log.d("REMOTE DATA TODO", document.get("note").toString().get(1).toString())
+                todo.onNext()
+            } else {
+                Log.d(TAG, "No such document")
+            }
+        }
+
+
+        return todo.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
 
 
 }

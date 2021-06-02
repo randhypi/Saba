@@ -1,5 +1,6 @@
 package com.capstone.saba.domain.repository
 
+import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import io.reactivex.Flowable
 
@@ -17,6 +18,10 @@ interface IUserRepository {
     fun getDataUser(): Flowable<User>
 
     fun signOut()
+
+    fun getTodo(): Flowable<Todo>
+
+
 
 
 }

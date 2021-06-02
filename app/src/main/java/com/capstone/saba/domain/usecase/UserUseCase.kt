@@ -1,5 +1,6 @@
 package com.capstone.saba.domain.usecase
 
+import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import io.reactivex.Flowable
 
@@ -16,4 +17,7 @@ interface UserUseCase {
     fun getDataUser(): Flowable<User>
 
     fun signOut()
+
+
+    fun getTodo(): Flowable<Todo>
 }
