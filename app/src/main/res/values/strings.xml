@@ -42,4 +42,6 @@
 
     <string name="todo">To Do</string>
     <string name="note">Note</string>
+    <string name="btn_chat_sent">Btn Chat Sent</string>
+    <string name="tuliskan_pesan_disini">Tuliskan pesan disini</string>
 </resources>

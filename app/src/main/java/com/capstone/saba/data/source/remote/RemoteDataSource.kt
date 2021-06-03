@@ -132,9 +132,9 @@ class RemoteDataSource @Inject constructor(
     }
 
 
-    fun getChat(): Flowable<ChatBot> {
+    fun getChat(): Flowable<List<ChatBot>> {
 
-        val chatBot = PublishSubject.create<ChatBot>()
+        val chatBot = PublishSubject.create<List<ChatBot>>()
         val currentUser = auth.currentUser
 
         val docRefInput = db.collection("chatbot")
@@ -147,26 +147,39 @@ class RemoteDataSource @Inject constructor(
             .collection("for-user")
             .document(currentUser?.uid.toString())
 
+        Log.d("CURRENT USER", auth?.uid!!)
+
         docRefInput.addSnapshotListener { input, e ->
             docResponse.addSnapshotListener { response, e ->
                 val responseObject = response?.toObject<Response>()
                 val inputObject = input?.toObject<Input>()
-                val chatbot = inputObject?.let {
+                val chatbot = ArrayList<ChatBot>()
+                inputObject?.let {
                     responseObject?.let { it1 ->
-                        ChatBot(
-                            input = it,
-                            response = it1
-                        )
+                        Log.d("ChatBot", "$it\n $it1")
+                        try {
+                            for (i in 0..it.messages.size) {
+                                it1.messages.get(i).get("response")?.let { it2 ->
+                                    val data = ChatBot(
+                                        input = it.messages.get(i),
+                                        response = it2
+                                    )
+                                    chatbot.addAll(listOf(data))
+                                }
+                            }
+                        }catch(e: Exception) {
+                            Log.d("REMOTE ERROR", e.toString())
+                        }
                     }
                 }
-                chatbot?.let { chatBot.onNext(it) }
+                chatBot.onNext(chatbot)
             }
         }
         return chatBot.toFlowable(BackpressureStrategy.BUFFER)
     }
 
 
-    fun setInput(messages: String): Flowable<Boolean> {
+    fun sentChat(messages: String): Flowable<Boolean> {
         val result = PublishSubject.create<Boolean>()
         val currentUser = auth.currentUser
         val docRefInput = db.collection("chatbot")

@@ -1,5 +1,6 @@
 package com.capstone.saba.di
 
+import com.capstone.saba.ui.chatbot.ChatbotFragment
 import com.capstone.saba.ui.home.HomeFragment
 import com.capstone.saba.ui.login.LoginFragment
 import com.capstone.saba.ui.myaccount.MyAccountFragment
@@ -31,4 +32,5 @@ interface AppComponent {
     fun inject(fragment: EFragment)
     fun inject(fragment: NoteFragment)
     fun inject(fragment: ToDoFragment)
+    fun inject(fragment: ChatbotFragment)
 }

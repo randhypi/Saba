@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
@@ -54,6 +54,8 @@ class HomeFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+
 
         if (getValueAuth() == true){
             homeViewModel.getData().observe(viewLifecycleOwner, { data ->
@@ -71,6 +73,9 @@ class HomeFragment : Fragment() {
                     view.findNavController().navigate(R.id.action_homeFragment_to_myAccountFragment)
                 }
 
+                binding.btnAssisten.setOnClickListener {
+                    view.findNavController().navigate(R.id.action_homeFragment_to_chatbotFragment)
+                }
 
 
             })
@@ -78,7 +83,7 @@ class HomeFragment : Fragment() {
             view.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
 
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+
 
     }
 

@@ -1,6 +1,7 @@
 package com.capstone.saba.di
 
 import androidx.lifecycle.ViewModel
+import com.capstone.saba.ui.chatbot.ChatbotViewModel
 import com.capstone.saba.ui.home.HomeViewModel
 import com.capstone.saba.ui.login.SignInViewModel
 import com.capstone.saba.ui.myaccount.MyAccountViewModel
@@ -45,5 +46,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(NoteViewModel::class)
     abstract fun bindNoteViewModel(viewModel: NoteViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChatbotViewModel::class)
+    abstract fun bindChatViewModel(viewModel: ChatbotViewModel): ViewModel
 
 }

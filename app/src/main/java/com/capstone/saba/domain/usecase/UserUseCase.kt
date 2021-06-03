@@ -1,5 +1,6 @@
 package com.capstone.saba.domain.usecase
 
+import com.capstone.saba.domain.model.ChatBot
 import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import io.reactivex.Flowable
@@ -20,4 +21,10 @@ interface UserUseCase {
 
 
     fun getTodo(): Flowable<Todo>
+
+
+
+    fun getChat(): Flowable<List<ChatBot>>
+
+    fun sentChat(message: String): Flowable<Boolean>
 }

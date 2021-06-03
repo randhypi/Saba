@@ -1,8 +1,8 @@
 package com.capstone.saba.domain.model
 
 data class ChatBot(
-    val response: Response,
-    val input: Input
+    val response: String,
+    val input: String
 )
 
 

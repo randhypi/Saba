@@ -21,6 +21,9 @@ class UserInteractor @Inject constructor(private val userRepository: IUserReposi
 
     override fun signOut() = userRepository.signOut()
     override fun getTodo() = userRepository.getTodo()
+    override fun getChat() = userRepository.getChat()
+
+    override fun sentChat(message: String) = userRepository.sentChat(message)
 
 
 }

@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_notebookFragment"
             app:destination="@id/notebookFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_chatbotFragment"
+            app:destination="@id/chatbotFragment" />
 
     </fragment>
     <fragment
@@ -121,6 +124,11 @@
         android:name="com.capstone.saba.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" />
+    <fragment
+        android:id="@+id/chatbotFragment"
+        android:name="com.capstone.saba.ui.chatbot.ChatbotFragment"
+        android:label="fragment_chatbot"
+        tools:layout="@layout/fragment_chatbot" />
 
 
 </navigation>

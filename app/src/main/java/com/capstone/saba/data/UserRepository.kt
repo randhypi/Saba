@@ -2,6 +2,7 @@ package com.capstone.saba.data
 
 import android.annotation.SuppressLint
 import com.capstone.saba.data.source.remote.RemoteDataSource
+import com.capstone.saba.domain.model.ChatBot
 import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import com.capstone.saba.domain.repository.IUserRepository
@@ -38,6 +39,11 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
     override fun signOut() = remoteDataSource.signOut()
     override fun getTodo(): Flowable<Todo> =
         remoteDataSource.getNoteTodo()
+
+    override fun getChat(): Flowable<List<ChatBot>> = remoteDataSource.getChat()
+
+    override fun sentChat(message: String): Flowable<Boolean> =
+        remoteDataSource.sentChat(message)
 
 
 }

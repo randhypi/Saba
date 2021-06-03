@@ -1,5 +1,6 @@
 package com.capstone.saba.domain.repository
 
+import com.capstone.saba.domain.model.ChatBot
 import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import io.reactivex.Flowable
@@ -20,6 +21,10 @@ interface IUserRepository {
     fun signOut()
 
     fun getTodo(): Flowable<Todo>
+
+    fun getChat(): Flowable<List<ChatBot>>
+
+    fun sentChat(messaging: String): Flowable<Boolean>
 
 
 
