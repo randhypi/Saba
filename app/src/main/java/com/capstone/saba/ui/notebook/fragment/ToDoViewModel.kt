@@ -7,7 +7,7 @@ import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.usecase.UserUseCase
 import javax.inject.Inject
 
-class NoteViewModel @Inject constructor(private val userUseCase: UserUseCase) : ViewModel() {
+class ToDoViewModel @Inject constructor(private val userUseCase: UserUseCase) : ViewModel() {
 
 
     fun getNoteTodo(): LiveData<Todo> =

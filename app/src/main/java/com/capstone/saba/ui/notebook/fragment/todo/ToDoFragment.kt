@@ -1,4 +1,4 @@
-package com.capstone.saba.ui.notebook.fragment
+package com.capstone.saba.ui.notebook.fragment.todo
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.capstone.saba.MyApplication
 import com.capstone.saba.R
 import com.capstone.saba.databinding.FragmentToDoBinding
+import com.capstone.saba.ui.notebook.fragment.ToDoViewModel
 import com.capstone.saba.vm.ViewModelFactory
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class ToDoFragment : Fragment() {
     @Inject
     lateinit var factory: ViewModelFactory
 
-    private val noteViewModel: NoteViewModel by viewModels { factory }
+    private val noteViewModel: ToDoViewModel by viewModels { factory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

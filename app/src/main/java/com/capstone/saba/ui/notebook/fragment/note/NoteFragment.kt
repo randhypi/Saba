@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.capstone.saba.R
 import com.capstone.saba.databinding.FragmentNoteBinding
+import javax.inject.Inject
 
 
 class NoteFragment : Fragment() {
 
     private lateinit var binding: FragmentNoteBinding
+
+    @Inject
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
