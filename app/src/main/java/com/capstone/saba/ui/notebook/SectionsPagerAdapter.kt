@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.capstone.saba.ui.notebook.fragment.note.NoteFragment
-import com.capstone.saba.ui.notebook.fragment.ToDoFragment
+import com.capstone.saba.ui.notebook.fragment.todo.ToDoFragment
 
 class SectionsPagerAdapter(private val fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 

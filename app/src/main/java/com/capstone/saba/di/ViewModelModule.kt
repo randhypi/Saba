@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.capstone.saba.ui.home.HomeViewModel
 import com.capstone.saba.ui.login.SignInViewModel
 import com.capstone.saba.ui.myaccount.MyAccountViewModel
-import com.capstone.saba.ui.notebook.fragment.NoteViewModel
+import com.capstone.saba.ui.notebook.fragment.ToDoViewModel
 import com.capstone.saba.ui.onboarding.OnBoardingViewModel
 import com.capstone.saba.ui.signup.SignUpViewModel
 import dagger.Binds
@@ -43,7 +43,7 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(NoteViewModel::class)
-    abstract fun bindNoteViewModel(viewModel: NoteViewModel): ViewModel
+    @ViewModelKey(ToDoViewModel::class)
+    abstract fun bindNoteViewModel(viewModel: ToDoViewModel): ViewModel
 
 }
