@@ -37,7 +37,8 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
 
     override fun signOut() = remoteDataSource.signOut()
-    override fun getTodo(): Flowable<Todo> =
+
+    override fun getTodo(): Flowable<Todo>? =
         remoteDataSource.getNoteTodo()
 
     override fun getChat(): Flowable<List<ChatBot>> = remoteDataSource.getChat()

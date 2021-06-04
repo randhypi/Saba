@@ -4,7 +4,7 @@ import com.capstone.saba.ui.chatbot.ChatbotFragment
 import com.capstone.saba.ui.home.HomeFragment
 import com.capstone.saba.ui.login.LoginFragment
 import com.capstone.saba.ui.myaccount.MyAccountFragment
-import com.capstone.saba.ui.notebook.fragment.ToDoFragment
+import com.capstone.saba.ui.notebook.fragment.todo.ToDoFragment
 import com.capstone.saba.ui.notebook.fragment.note.NoteFragment
 import com.capstone.saba.ui.onboarding.OnBoardingActivity
 import com.capstone.saba.ui.signup.fragment.*

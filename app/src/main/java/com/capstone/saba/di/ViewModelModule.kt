@@ -5,7 +5,7 @@ import com.capstone.saba.ui.chatbot.ChatbotViewModel
 import com.capstone.saba.ui.home.HomeViewModel
 import com.capstone.saba.ui.login.SignInViewModel
 import com.capstone.saba.ui.myaccount.MyAccountViewModel
-import com.capstone.saba.ui.notebook.fragment.ToDoViewModel
+import com.capstone.saba.ui.notebook.fragment.todo.ToDoViewModel
 import com.capstone.saba.ui.onboarding.OnBoardingViewModel
 import com.capstone.saba.ui.signup.SignUpViewModel
 import dagger.Binds

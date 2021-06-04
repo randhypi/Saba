@@ -110,7 +110,7 @@ class RemoteDataSource @Inject constructor(
 
     fun signOut() = auth.signOut()
 
-    fun getNoteTodo(): Flowable<Todo> {
+    fun getNoteTodo(): Flowable<Todo>? {
         val todo = PublishSubject.create<Todo>()
         val currentUser = auth.currentUser
 

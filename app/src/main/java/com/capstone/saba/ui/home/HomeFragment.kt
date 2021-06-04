@@ -77,6 +77,10 @@ class HomeFragment : Fragment() {
                     view.findNavController().navigate(R.id.action_homeFragment_to_chatbotFragment)
                 }
 
+                binding.btnHome.setOnClickListener {
+                    view.findNavController().navigate(R.id.action_homeFragment_to_notebookFragment)
+                }
+
 
             })
         }else if(getValueAuth() == false){

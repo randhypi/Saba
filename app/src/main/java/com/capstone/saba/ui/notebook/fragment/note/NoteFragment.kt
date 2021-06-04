@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class NoteFragment : Fragment() {
 
-    private lateinit var binding: FragmentNoteBinding
+    /*private lateinit var binding: FragmentNoteBinding
 
     @Inject
 
@@ -27,6 +27,6 @@ class NoteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    }
+    }*/
 
 }

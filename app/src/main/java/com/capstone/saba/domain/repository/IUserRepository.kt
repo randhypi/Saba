@@ -20,7 +20,7 @@ interface IUserRepository {
 
     fun signOut()
 
-    fun getTodo(): Flowable<Todo>
+    fun getTodo(): Flowable<Todo>?
 
     fun getChat(): Flowable<List<ChatBot>>
 
