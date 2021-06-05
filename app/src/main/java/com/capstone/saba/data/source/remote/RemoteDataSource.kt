@@ -110,18 +110,25 @@ class RemoteDataSource @Inject constructor(
 
     fun signOut() = auth.signOut()
 
-    fun getNoteTodo(): Flowable<Todo>? {
-        val todo = PublishSubject.create<Todo>()
+    fun getNoteTodo(): Flowable<List<Todo>> {
+        val todo = PublishSubject.create<List<Todo>>()
         val currentUser = auth.currentUser
 
         val userId = currentUser?.uid
         val docRef = db.collection("users").document(userId.toString())
         docRef.addSnapshotListener { document, e ->
+            val todosList = ArrayList<Todo>()
             if (document != null) {
                 Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                 val data = document.toObject<Todo>()
                 Log.d("REMOTE DATA TODO", data.toString())
-                data?.let { todo.onNext(it) }
+                document.data?.forEach { (s, any) ->
+                   val todos = Todo(
+                       deskripsi = s
+                   )
+                    todosList.add(todos)
+                }
+                todo.onNext(todosList)
             } else {
                 Log.d(TAG, "No such document")
             }

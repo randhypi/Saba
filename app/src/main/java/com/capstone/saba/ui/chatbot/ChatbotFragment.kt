@@ -29,6 +29,7 @@ class ChatbotFragment : Fragment() {
         val TAG = ChatbotFragment::class.java.simpleName
     }
 
+
     @Inject
     lateinit var factory: ViewModelFactory
 

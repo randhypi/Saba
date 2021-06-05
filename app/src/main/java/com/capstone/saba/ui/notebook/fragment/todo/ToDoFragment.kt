@@ -56,7 +56,6 @@ class ToDoFragment : Fragment() {
 
         noteViewModel.getNoteTodo().observe(viewLifecycleOwner, { data ->
             showRecycleList(data)
-
         })
 
         /*with(binding.rvNote){
@@ -68,7 +67,7 @@ class ToDoFragment : Fragment() {
 
     }
 
-    private fun showRecycleList(todo: Todo){
+    private fun showRecycleList(todo: List<Todo>){
         /*binding.rvChat.layoutManager = LinearLayoutManager(context)
         val listChatAdapter = ChatbotAdapter()
         binding.rvChat.scrollToPosition(chat.size - 1)
