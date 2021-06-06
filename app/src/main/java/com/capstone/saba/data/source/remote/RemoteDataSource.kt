@@ -119,8 +119,11 @@ class RemoteDataSource @Inject constructor(
         docRef.addSnapshotListener { document, e ->
             val todosList = ArrayList<Todo>()
             if (document != null) {
-                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
-                val data = document.toObject<Todo>()
+                Log.d(TAG, "DocumentSnapshot data: ${document.data?.get("initodo")}")
+                //val data = document.toObject<Todo>()
+
+                val data = document.get("initodo")
+
                 Log.d("REMOTE DATA TODO", data.toString())
                 document.data?.forEach { (s, any) ->
                    val todos = Todo(

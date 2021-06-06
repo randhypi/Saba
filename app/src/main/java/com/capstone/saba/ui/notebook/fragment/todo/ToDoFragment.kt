@@ -79,4 +79,9 @@ class ToDoFragment : Fragment() {
         listTodoAdapter.setData(todo)
         binding.rvNote.adapter = listTodoAdapter
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
