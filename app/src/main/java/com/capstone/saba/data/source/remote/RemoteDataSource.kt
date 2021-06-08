@@ -115,17 +115,48 @@ class RemoteDataSource @Inject constructor(
         val currentUser = auth.currentUser
 
         val userId = currentUser?.uid
-        val docRef = db.collection("users").document(userId.toString())
-        docRef.addSnapshotListener { document, e ->
+        //val docRef = db.collection("users").document(userId.toString()).collection("todo").document("untitled")
+
+
+        db.collection("users").document(userId.toString()).collection("todo").document("untitled")
+            .get()
+            .addOnSuccessListener { result ->
+                val todosList = ArrayList<Todo>()
+
+                    Log.d(TAG, "${result.get("coba")}")
+
+                result.data?.forEach { data ->
+                    val todos = Todo(
+                        deskripsi = data.value.toString()
+                    )
+                    todosList.add(todos)
+
+                }
+                todo.onNext(todosList)
+
+                /*val list = result
+
+                val todos = Todo(
+                    deskripsi = list.toString()
+                )
+                todosList.add(todos)
+                todo.onNext(todosList)*/
+
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+
+    /*docRef.addSnapshotListener { document, e ->
             val todosList = ArrayList<Todo>()
             if (document != null) {
-                Log.d(TAG, "DocumentSnapshot data: ${document.data?.get("initodo")}")
+                Log.d(TAG, "DocumentSnapshot data: ${document.data?.get("coba")}")
                 //val data = document.toObject<Todo>()
 
-                val data = document.get("initodo")
+                val da = document.get("coba")
 
-                Log.d("REMOTE DATA TODO", data.toString())
-                document.data?.forEach { (s, any) ->
+                Log.d("REMOTE DATA TODO", da.toString())
+                document.data?.get("coba"). { (s, any) ->
                    val todos = Todo(
                        deskripsi = s
                    )
@@ -136,10 +167,12 @@ class RemoteDataSource @Inject constructor(
                 Log.d(TAG, "No such document")
             }
         }
-
+*/
 
         return todo.toFlowable(BackpressureStrategy.BUFFER)
     }
+
+
 
 
     fun getChat(): Flowable<List<ChatBot>> {

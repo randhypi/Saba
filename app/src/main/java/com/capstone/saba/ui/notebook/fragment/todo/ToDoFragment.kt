@@ -2,6 +2,7 @@ package com.capstone.saba.ui.notebook.fragment.todo
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.saba.MyApplication
 import com.capstone.saba.databinding.FragmentToDoBinding
 import com.capstone.saba.domain.model.Todo
+import com.capstone.saba.ui.chatbot.ChatbotFragment
 import com.capstone.saba.vm.ViewModelFactory
 import javax.inject.Inject
 
@@ -56,6 +58,7 @@ class ToDoFragment : Fragment() {
 
         noteViewModel.getNoteTodo().observe(viewLifecycleOwner, { data ->
             showRecycleList(data)
+            Log.d(TAG, "${data}")
         })
 
         /*with(binding.rvNote){

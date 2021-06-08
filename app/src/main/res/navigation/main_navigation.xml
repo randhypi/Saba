@@ -118,7 +118,11 @@
         android:id="@+id/toDoFragment"
         android:name="com.capstone.saba.ToDoFragment"
         android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" />
+        tools:layout="@layout/fragment_to_do" >
+        <action
+            android:id="@+id/action_toDoFragment_to_editTodoFragment"
+            app:destination="@id/editTodoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/noteFragment"
         android:name="com.capstone.saba.NoteFragment"
@@ -129,6 +133,10 @@
         android:name="com.capstone.saba.ui.chatbot.ChatbotFragment"
         android:label="fragment_chatbot"
         tools:layout="@layout/fragment_chatbot" />
+    <fragment
+        android:id="@+id/editTodoFragment"
+        android:name="com.capstone.saba.ui.notebook.fragment.todo.EditTodoFragment"
+        android:label="EditTodoFragment" />
 
 
 </navigation>
