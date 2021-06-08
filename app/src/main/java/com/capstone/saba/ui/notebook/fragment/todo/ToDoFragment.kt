@@ -6,10 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.saba.MyApplication
+import com.capstone.saba.R
 import com.capstone.saba.databinding.FragmentToDoBinding
 import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.ui.chatbot.ChatbotFragment
@@ -44,6 +47,8 @@ class ToDoFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentToDoBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        //val imgBtn: ImageButton = view.findViewById(R.id.btn_create_todo)
         return view
 
     }
@@ -51,8 +56,18 @@ class ToDoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //val imgBtn: ImageButton = view.findViewById(R.id.btn_create_todo)
+
+        binding.btnCreateTodo.setOnClickListener{
+            view.findNavController().navigate(R.id.action_toDoFragment_to_editTodoFragment)
+        }
+
 
         //val todoAdapter = ToDoAdapter()
+
+        //binding.btnHome.setOnClickListener {
+            //view.findNavController().navigate(R.id.action_homeFragment_to_notebookFragment)
+        //}
 
         binding.rvNote.setHasFixedSize(true)
 
