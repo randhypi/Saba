@@ -59,7 +59,7 @@ class ToDoFragment : Fragment() {
         //val imgBtn: ImageButton = view.findViewById(R.id.btn_create_todo)
 
         binding.btnCreateTodo.setOnClickListener{
-            view.findNavController().navigate(R.id.action_toDoFragment_to_createTodoFragment)
+            view.findNavController().navigate(R.id.action_notebookFragment_to_editTodoFragment)
         }
 
 

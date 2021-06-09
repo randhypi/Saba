@@ -108,23 +108,11 @@
         android:label="fragment_notebook"
         tools:layout="@layout/fragment_notebook" >
         <action
-            android:id="@+id/action_notebookFragment_to_toDoFragment"
-            app:destination="@id/toDoFragment" />
-        <action
             android:id="@+id/action_notebookFragment_to_noteFragment"
             app:destination="@id/noteFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/toDoFragment"
-        android:name="com.capstone.saba.ToDoFragment"
-        android:label="fragment_to_do"
-        tools:layout="@layout/fragment_to_do" >
         <action
-            android:id="@+id/action_toDoFragment_to_editTodoFragment"
+            android:id="@+id/action_notebookFragment_to_editTodoFragment"
             app:destination="@id/editTodoFragment" />
-        <action
-            android:id="@+id/action_toDoFragment_to_createTodoFragment"
-            app:destination="@id/createTodoFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteFragment"
@@ -140,11 +128,6 @@
         android:id="@+id/editTodoFragment"
         android:name="com.capstone.saba.ui.notebook.fragment.todo.EditTodoFragment"
         android:label="EditTodoFragment" />
-    <fragment
-        android:id="@+id/createTodoFragment"
-        android:name="com.capstone.saba.ui.notebook.fragment.todo.CreateTodoFragment"
-        android:label="fragment_create_todo"
-        tools:layout="@layout/fragment_create_todo" />
 
 
 </navigation>
