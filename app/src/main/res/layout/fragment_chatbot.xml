@@ -51,59 +51,61 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/ll_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/myToolbar"
-        tools:listitem="@layout/item_row_chat" />
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        tools:listitem="@layout/item_row_chat">
 
-    <LinearLayout
-        android:id="@+id/ll_chat"
-        android:layout_width="match_parent"
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="top"
+        app:boxBackgroundColor="#FFFFFF"
+        app:boxBackgroundMode="none"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxStrokeColor="#1E88E5"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_chat_sent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            android:layout_width="350dp"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/te_chat_sent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:gravity="top"
-            app:boxBackgroundColor="#FFFFFF"
-            app:boxBackgroundMode="none"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxStrokeColor="#1E88E5"
-            app:hintAnimationEnabled="false"
-            app:hintEnabled="false">
+            android:hint="@string/tuliskan_pesan_disini"
+            android:maxHeight="200dp"
+            android:textAlignment="gravity"
+            android:textColor="#000000" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/te_chat_sent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/tuliskan_pesan_disini"
-                android:maxHeight="200dp"
-                android:textAlignment="gravity"
-                android:textColor="#000000" />
-        </com.google.android.material.textfield.TextInputLayout>
+    <ImageButton
+        android:id="@+id/btn_chat_sent"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/ic_send"
+        android:backgroundTint="@color/blue_700"
+        android:contentDescription="@string/btn_chat_sent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btn_chat_sent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="40dp"
-            android:background="@drawable/ic_send"
-            android:backgroundTint="@color/blue_700"
-            android:contentDescription="@string/btn_chat_sent"/>
 
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
