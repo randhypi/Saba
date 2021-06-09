@@ -108,17 +108,12 @@
         android:label="fragment_notebook"
         tools:layout="@layout/fragment_notebook" >
         <action
-            android:id="@+id/action_notebookFragment_to_noteFragment"
-            app:destination="@id/noteFragment" />
-        <action
             android:id="@+id/action_notebookFragment_to_editTodoFragment"
             app:destination="@id/editTodoFragment" />
+        <action
+            android:id="@+id/action_notebookFragment_to_createFragment"
+            app:destination="@id/createFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/noteFragment"
-        android:name="com.capstone.saba.ui.notebook.fragment.note.NoteFragment"
-        android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
     <fragment
         android:id="@+id/chatbotFragment"
         android:name="com.capstone.saba.ui.chatbot.ChatbotFragment"
@@ -137,6 +132,11 @@
         android:name="com.capstone.saba.ui.mentor.OurMentorFragment"
         android:label="fragment_our_mentor"
         tools:layout="@layout/fragment_our_mentor" />
+    <fragment
+        android:id="@+id/createFragment"
+        android:name="com.capstone.saba.ui.notebook.fragment.todo.CreateFragment"
+        android:label="fragment_create"
+        tools:layout="@layout/fragment_create" />
 
 
 </navigation>

@@ -5,6 +5,8 @@ import com.capstone.saba.ui.home.HomeFragment
 import com.capstone.saba.ui.login.LoginFragment
 import com.capstone.saba.ui.myaccount.MyAccountFragment
 import com.capstone.saba.ui.notebook.fragment.note.NoteFragment
+import com.capstone.saba.ui.notebook.fragment.todo.CreateFragment
+import com.capstone.saba.ui.notebook.fragment.todo.EditTodoFragment
 import com.capstone.saba.ui.notebook.fragment.todo.ToDoFragment
 import com.capstone.saba.ui.onboarding.OnBoardingActivity
 import com.capstone.saba.ui.signup.fragment.*
@@ -32,5 +34,7 @@ interface AppComponent {
     fun inject(fragment: EFragment)
     fun inject(fragment: NoteFragment)
     fun inject(fragment: ToDoFragment)
+    fun inject(fragment: EditTodoFragment)
+    fun inject(fragment: CreateFragment)
     fun inject(fragment: ChatbotFragment)
 }

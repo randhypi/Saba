@@ -3,22 +3,25 @@ package com.capstone.saba.ui.notebook.fragment.todo
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.capstone.saba.MyApplication
+import com.capstone.saba.R
 import com.capstone.saba.data.source.remote.RemoteDataSource
+import com.capstone.saba.databinding.FragmentCreateBinding
 import com.capstone.saba.databinding.FragmentEditTodoBinding
 import com.capstone.saba.vm.ViewModelFactory
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import javax.inject.Inject
 
-class EditTodoFragment : Fragment() {
 
-    private var _binding: FragmentEditTodoBinding? = null
+class CreateFragment : Fragment() {
+
+    private var _binding: FragmentCreateBinding? = null
     private val binding get() = _binding!!
 
     companion object {
@@ -39,37 +42,40 @@ class EditTodoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        _binding = FragmentEditTodoBinding.inflate(inflater, container, false)
-    val view = binding.root
+        _binding = FragmentCreateBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-    return view
+        return view
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel.getUser().observe(viewLifecycleOwner, { data ->
+        userViewModel.getUser().observe(viewLifecycleOwner, ) { data ->
 
-            val db = Firebase.firestore
+            binding.btnCreate.setOnClickListener{
 
+                val db = Firebase.firestore
 
+                val getDes = binding.edtDeskripsiCreate.text.toString()
 
-            binding.btnDeleteTodo.setOnClickListener {
+                val user = hashMapOf(
+                    "todo" to "$getDes"
+                )
 
+                db.collection("users").document(data.id).collection("todo")
+                    .add(user)
+                    .addOnSuccessListener { documentReference ->
+                        Log.d(EditTodoFragment.TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(EditTodoFragment.TAG, "Error adding document", e)
+                    }
 
-                db.collection("users").document("DC").collection("todo").
-                    .delete()
-                    .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
-                    .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
             }
 
 
-
-        })
-
-
+        }
 
     }
-
 }

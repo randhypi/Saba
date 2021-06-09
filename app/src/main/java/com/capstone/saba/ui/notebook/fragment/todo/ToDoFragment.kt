@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.saba.MyApplication
+import com.capstone.saba.R
 import com.capstone.saba.databinding.FragmentToDoBinding
 import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.vm.ViewModelFactory
@@ -40,30 +42,19 @@ class ToDoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentToDoBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        //val imgBtn: ImageButton = view.findViewById(R.id.btn_create_todo)
         return view
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //val imgBtn: ImageButton = view.findViewById(R.id.btn_create_todo)
+       binding.btnCreateTodo.setOnClickListener{
+            view.findNavController().navigate(R.id.action_notebookFragment_to_createFragment)
+       }
 
-//        binding.btnCreateTodo.setOnClickListener{
-//            view.findNavController().navigate(R.id.action_oFragment_to_editTodoFragment)
-//        }
-
-
-        //val todoAdapter = ToDoAdapter()
-
-        //binding.btnHome.setOnClickListener {
-            //view.findNavController().navigate(R.id.action_homeFragment_to_notebookFragment)
-        //}
 
         binding.rvNote.setHasFixedSize(true)
 
@@ -72,21 +63,9 @@ class ToDoFragment : Fragment() {
             Log.d(TAG, "${data}")
         })
 
-        /*with(binding.rvNote){
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = todoAdapter
-        }*/
-
-
     }
 
     private fun showRecycleList(todo: List<Todo>){
-        /*binding.rvChat.layoutManager = LinearLayoutManager(context)
-        val listChatAdapter = ChatbotAdapter()
-        binding.rvChat.scrollToPosition(chat.size - 1)
-        listChatAdapter.setData(chat as ArrayList<ChatBot>)
-        binding.rvChat.adapter = listChatAdapter*/
 
         binding.rvNote.layoutManager = LinearLayoutManager(context)
         val listTodoAdapter = ToDoAdapter()

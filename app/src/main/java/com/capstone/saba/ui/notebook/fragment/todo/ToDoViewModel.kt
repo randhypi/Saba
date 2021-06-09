@@ -11,5 +11,8 @@ class ToDoViewModel @Inject constructor(private val userUseCase: UserUseCase) : 
     fun getNoteTodo() =
         LiveDataReactiveStreams.fromPublisher(userUseCase.getTodo())
 
+    fun getUser() =
+        LiveDataReactiveStreams.fromPublisher(userUseCase.getDataUser())
+
 
 }

@@ -2,7 +2,9 @@ package com.capstone.saba.ui.notebook.fragment.todo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.capstone.saba.R
 import com.capstone.saba.databinding.ListTodoBinding
 import com.capstone.saba.domain.model.Todo
 import java.util.*
@@ -10,7 +12,6 @@ import java.util.*
 class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>(){
 
     private val listTodo = ArrayList<Todo>()
-
 
     fun setData(items: List<Todo>) {
         listTodo.clear()
@@ -25,11 +26,14 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //val data = listTodo[position]
-
-
 
         holder.bind(listTodo[position])
+
+        holder.itemView.setOnClickListener{
+
+            holder.itemView.findNavController().navigate(R.id.action_notebookFragment_to_editTodoFragment)
+
+        }
     }
 
     override fun getItemCount(): Int = listTodo.size
