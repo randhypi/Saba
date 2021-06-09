@@ -120,30 +120,27 @@ class RemoteDataSource @Inject constructor(
         val currentUser = auth.currentUser
 
         val userId = currentUser?.uid
-        //val docRef = db.collection("users").document(userId.toString()).collection("todo").document("untitled")
 
-
-        db.collection("users").document(userId.toString()).collection("todo").document("untitled")
+        db.collection("users").document(userId.toString()).collection("todo")
             .get()
             .addOnSuccessListener { result ->
-                val todosList = ArrayList<Todo>()
 
-                    Log.d(TAG, "${result.get("coba")}")
+                val todoList = ArrayList<Todo>()
 
-                result.data?.forEach { data ->
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+
                     val todos = Todo(
-                        deskripsi = data.value.toString()
+                        deskripsi = document.get("todo").toString()
                     )
-                    todosList.add(todos)
-
+                    todoList.add(todos)
                 }
-                todo.onNext(todosList)
+
+                todo.onNext(todoList)
             }
             .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
+                Log.d(TAG, "Error getting documents: ", exception)
             }
-
-
 
         return todo.toFlowable(BackpressureStrategy.BUFFER)
     }
