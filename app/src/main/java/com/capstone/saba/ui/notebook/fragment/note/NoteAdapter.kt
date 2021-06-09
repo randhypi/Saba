@@ -5,9 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.saba.databinding.CardNoteBinding
-import java.util.ArrayList
+import com.capstone.saba.domain.model.Note
 
-class NoteAdapter (private val listNote: ArrayList<Note>) : RecyclerView.Adapter<NoteAdapter.ViewHolder>(){
+class NoteAdapter() : RecyclerView.Adapter<NoteAdapter.ViewHolder>(){
+
+    private val listNote = ArrayList<Note>()
+
+
+    fun setData(items: List<Note>) {
+        listNote.clear()
+        listNote.addAll(items)
+        notifyDataSetChanged()
+
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,7 +36,7 @@ class NoteAdapter (private val listNote: ArrayList<Note>) : RecyclerView.Adapter
         fun bind(note: Note){
             with(binding){
                 tvTitleNote.text = note.title
-                tvDescNote.text = note.description
+                tvDescNote.text = note.deskripsi
             }
         }
     }

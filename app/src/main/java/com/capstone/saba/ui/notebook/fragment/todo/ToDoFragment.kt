@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -14,6 +15,7 @@ import com.capstone.saba.MyApplication
 import com.capstone.saba.R
 import com.capstone.saba.databinding.FragmentToDoBinding
 import com.capstone.saba.domain.model.Todo
+import com.capstone.saba.ui.chatbot.ChatbotFragment
 import com.capstone.saba.vm.ViewModelFactory
 import javax.inject.Inject
 
@@ -57,8 +59,9 @@ class ToDoFragment : Fragment() {
         //val imgBtn: ImageButton = view.findViewById(R.id.btn_create_todo)
 
         binding.btnCreateTodo.setOnClickListener{
-            view.findNavController().navigate(R.id.action_toDoFragment_to_createTodoFragment)
+            view.findNavController().navigate(R.id.action_toDoFragment_to_editTodoFragment)
         }
+
 
         //val todoAdapter = ToDoAdapter()
 
@@ -95,12 +98,8 @@ class ToDoFragment : Fragment() {
         binding.rvNote.adapter = listTodoAdapter
     }
 
-
-
-
     override fun onDestroy() {
         super.onDestroy()
-
         _binding = null
     }
 }
