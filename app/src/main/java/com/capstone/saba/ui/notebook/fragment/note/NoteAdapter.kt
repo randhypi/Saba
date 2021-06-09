@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.saba.databinding.CardNoteBinding
 import com.capstone.saba.domain.model.Note
-import java.util.ArrayList
 
 class NoteAdapter() : RecyclerView.Adapter<NoteAdapter.ViewHolder>(){
 
-    private val listNote: ArrayList<Note>()
+    private val listNote = ArrayList<Note>()
 
 
     fun setData(items: List<Note>) {
