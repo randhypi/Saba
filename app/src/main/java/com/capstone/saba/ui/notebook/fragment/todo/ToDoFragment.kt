@@ -59,7 +59,7 @@ class ToDoFragment : Fragment() {
         //val imgBtn: ImageButton = view.findViewById(R.id.btn_create_todo)
 
         binding.btnCreateTodo.setOnClickListener{
-            view.findNavController().navigate(R.id.action_toDoFragment_to_editTodoFragment)
+            view.findNavController().navigate(R.id.action_toDoFragment_to_createTodoFragment)
         }
 
 
@@ -69,7 +69,7 @@ class ToDoFragment : Fragment() {
             //view.findNavController().navigate(R.id.action_homeFragment_to_notebookFragment)
         //}
 
-        binding.rvNote.setHasFixedSize(true)
+        //binding.rvNote.setHasFixedSize(true)
 
         noteViewModel.getNoteTodo().observe(viewLifecycleOwner, { data ->
             showRecycleList(data)
@@ -91,11 +91,12 @@ class ToDoFragment : Fragment() {
         binding.rvChat.scrollToPosition(chat.size - 1)
         listChatAdapter.setData(chat as ArrayList<ChatBot>)
         binding.rvChat.adapter = listChatAdapter*/
-
+        binding.rvNote.setHasFixedSize(true)
         binding.rvNote.layoutManager = LinearLayoutManager(context)
         val listTodoAdapter = ToDoAdapter()
         listTodoAdapter.setData(todo)
         binding.rvNote.adapter = listTodoAdapter
+        listTodoAdapter.notifyDataSetChanged()
     }
 
     override fun onDestroy() {

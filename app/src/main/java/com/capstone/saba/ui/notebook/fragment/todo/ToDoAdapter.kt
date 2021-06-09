@@ -26,6 +26,10 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        //val data = listTodo[position]
+
+
+
         holder.bind(listTodo[position])
     }
 
@@ -35,7 +39,7 @@ class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>(){
 
         fun bind(todo: Todo){
             with(binding){
-                tvDesTodo.text = todo.deskripsi.toString()
+                tvDesTodo.text = todo.deskripsi
             }
         }
 

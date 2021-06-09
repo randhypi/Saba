@@ -118,45 +118,82 @@ class RemoteDataSource @Inject constructor(
         //val docRef = db.collection("users").document(userId.toString()).collection("todo").document("untitled")
 
 
-        db.collection("users").document(userId.toString()).collection("todo").document("untitled")
+        db.collection("users").document(userId.toString()).collection("todo")
             .get()
             .addOnSuccessListener { result ->
-                val todosList = ArrayList<Todo>()
 
-                    Log.d(TAG, "${result.get("coba")}")
+                val todoList = ArrayList<Todo>()
 
-                result.data?.forEach { data ->
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+
                     val todos = Todo(
-                        deskripsi = data.value.toString()
+                        deskripsi = document.get("todo").toString()
                     )
-                    todosList.add(todos)
-
+                    todoList.add(todos)
                 }
-                todo.onNext(todosList)
 
-                /*val list = result
-
-                val todos = Todo(
-                    deskripsi = list.toString()
-                )
-                todosList.add(todos)
-                todo.onNext(todosList)*/
-
+                todo.onNext(todoList)
             }
             .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
+                Log.d(TAG, "Error getting documents: ", exception)
             }
 
-    /*docRef.addSnapshotListener { document, e ->
+/*
+            .addOnCompleteListener {
+
+                val todoList = ArrayList<Todo>()
+                val result: StringBuffer = StringBuffer()
+
+                if (it.isSuccessful) {
+
+                    for (document in it.result!!) {
+
+                        result.append(document.data.getValue("todo"))
+                    }
+
+                    val todos = Todo(
+                        deskripsi = result.toString()
+                    )
+                    todoList.add(todos)
+                }
+
+                todo.onNext(todoList)
+            }
+*/
+
+/*
+        db.collection("users").document(userId.toString()).collection("todo").document("untitled")
+            .get()
+            .addOnSuccessListener { data ->
+
+                val todosList = ArrayList<Todo>()
+
+                val data2 = data.data?.values
+
+                val todos = Todo(
+                    deskripsi = data2.toString()
+                )
+                todosList.add(todos)
+
+                todo.onNext(todosList)
+
+                Log.d(TAG, " data: $data2")
+            }
+*/
+
+
+/*
+        docRef.addSnapshotListener { document, e ->
             val todosList = ArrayList<Todo>()
             if (document != null) {
                 Log.d(TAG, "DocumentSnapshot data: ${document.data?.get("coba")}")
                 //val data = document.toObject<Todo>()
 
-                val da = document.get("coba")
+                val da = document.data?.values
 
                 Log.d("REMOTE DATA TODO", da.toString())
-                document.data?.get("coba"). { (s, any) ->
+                document.data?.forEach() { (s, any) ->
                    val todos = Todo(
                        deskripsi = s
                    )
