@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sheet"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="bottom"
-    android:minHeight="476dp"
-    app:layout_behavior="@string/bottom_sheet_behavior"
+    android:layout_gravity="top"
     tools:context=".ui.chatbot.ChatbotFragment">
 
+<!--    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"-->
+<!--    app:behavior_hideable="true"-->
+<!--    app:behavior_peekHeight="540dp"-->
 
     <View
         android:id="@+id/view_chat"
@@ -29,7 +31,8 @@
         android:id="@+id/rv_chat"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
+        android:paddingBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_chat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,46 +40,59 @@
         app:layout_constraintVertical_bias="0.0"
         tools:listitem="@layout/item_row_chat" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="322dp"
+    <LinearLayout
+        android:id="@+id/ll_chat"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:gravity="top"
-        app:boxBackgroundColor="#FFFFFF"
-        app:boxBackgroundMode="outline"
-        app:boxCornerRadiusBottomEnd="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxStrokeColor="#1E88E5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_chat_sent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/te_chat_sent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/tuliskan_pesan_disini"
-            android:textAlignment="gravity"
-            android:textColor="#000000" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageView
-        android:id="@+id/btn_chat_sent"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/blue_700"
-        android:clickable="true"
-        android:contentDescription="@string/btn_chat_sent"
-        android:focusable="true"
-        android:src="@drawable/ic_send"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/blue_700" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_chat">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="top"
+            app:boxBackgroundColor="#FFFFFF"
+            app:boxBackgroundMode="none"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:boxStrokeColor="#1E88E5"
+            app:hintAnimationEnabled="false"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/te_chat_sent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/tuliskan_pesan_disini"
+                android:maxHeight="200dp"
+                android:textAlignment="gravity"
+                android:textColor="#000000" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/btn_chat_sent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/blue_700"
+            android:clickable="true"
+            android:contentDescription="@string/btn_chat_sent"
+            android:focusable="true"
+            android:src="@drawable/ic_send"
+            app:tint="@color/blue_700" />
+
+    </LinearLayout>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

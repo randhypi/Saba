@@ -15,6 +15,9 @@ import com.capstone.saba.MyApplication
 import com.capstone.saba.databinding.FragmentChatbotBinding
 import com.capstone.saba.domain.model.ChatBot
 import com.capstone.saba.vm.ViewModelFactory
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import javax.inject.Inject
 
 
@@ -54,11 +57,6 @@ class ChatbotFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        BottomSheetBehavior.from(binding.sheet).apply {
-//            peekHeight = 500
-//            this.state = BottomSheetBehavior.STATE_COLLAPSED
-//        }
-
 
         binding.rvChat.setHasFixedSize(true)
 
@@ -67,13 +65,16 @@ class ChatbotFragment : Fragment() {
             Log.d(TAG, "${data}")
             showRecyclerList(data)
         })
+
+
         binding.btnChatSent.setOnClickListener{
            var text = binding.teChatSent.text
+            Log.d("Data",
+                "Click ${Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())}")
 
             chatbotViewModel.sentChat(text.toString()).observe(viewLifecycleOwner,{data->
                 if (data){
                     binding.teChatSent.text?.clear()
-
                 }else{
                     Toast.makeText(context,"Gagal mengirim",Toast.LENGTH_SHORT).show()
                 }
@@ -97,32 +98,3 @@ class ChatbotFragment : Fragment() {
 }
 
 
-//val currentUser = auth.currentUser
-//
-//val docRefInput = db.collection("chatbot")
-//    .document("input")
-//    .collection("from-user")
-//    .document(currentUser?.uid.toString())
-//
-//val docResponse = db.collection("chatbot")
-//    .document("response")
-//    .collection("for-user")
-//    .document(currentUser?.uid.toString())
-//
-//Log.d("CURRENT USER", auth?.uid!!)
-//
-//docRefInput.addSnapshotListener { input, e ->
-//    docResponse.addSnapshotListener { response, e ->
-//        val responseObject = response?.toObject<Response>()
-//        val inputObject = input?.toObject<Input>()
-//        val chatbot = inputObject?.let {
-//            responseObject?.let { it1 ->
-//                Log.d("ChatBot","$it\n $it1")
-//                ChatBot(
-//                    input = it,
-//                    response = it1
-//                )
-//            }
-//        }
-//    }
-//}

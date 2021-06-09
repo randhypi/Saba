@@ -18,6 +18,7 @@ import com.capstone.saba.databinding.FragmentHomeBinding
 import com.capstone.saba.vm.ViewModelFactory
 import javax.inject.Inject
 
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -42,7 +43,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -74,7 +75,7 @@ class HomeFragment : Fragment() {
                 }
 
                 binding.btnAssisten.setOnClickListener {
-                    view.findNavController().navigate(R.id.action_homeFragment_to_chatbotFragment)
+                   view.findNavController().navigate(R.id.action_homeFragment_to_chatbotFragment)
                 }
 
                 binding.btnHome.setOnClickListener {
@@ -86,9 +87,6 @@ class HomeFragment : Fragment() {
         }else if(getValueAuth() == false){
             view.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
-
-
-
     }
 
 

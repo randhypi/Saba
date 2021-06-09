@@ -10,7 +10,7 @@ import com.capstone.saba.R
 import com.capstone.saba.databinding.ItemRowChatBinding
 import com.capstone.saba.domain.model.ChatBot
 
-class ChatbotAdapter(): RecyclerView.Adapter<ChatbotAdapter.ListViewHolder>() {
+class ChatbotAdapter : RecyclerView.Adapter<ChatbotAdapter.ListViewHolder>() {
 
     private val mData = ArrayList<ChatBot>()
 
@@ -39,16 +39,21 @@ class ChatbotAdapter(): RecyclerView.Adapter<ChatbotAdapter.ListViewHolder>() {
         private val binding = ItemRowChatBinding.bind(itemView)
         @SuppressLint("CheckResult")
         fun bind(chat: ChatBot) {
+            Log.d("ADAPTER","$chat")
+
 
             binding.tvChatLeft.apply {
                 this.visibility = View.VISIBLE
                 this.text = chat.response
             }
-            Log.d("ADAPTER","$chat \n$chat")
-                binding.tvChatRight.apply {
-                    this.visibility = View.VISIBLE
-                    this.text = chat.input
-                }
+            binding.tvChatRight.apply {
+                this.visibility = View.VISIBLE
+                this.text = chat.input
+            }
+
+
+
+
 
 
         }

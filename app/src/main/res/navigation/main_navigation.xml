@@ -116,19 +116,21 @@
     </fragment>
     <fragment
         android:id="@+id/toDoFragment"
-        android:name="com.capstone.saba.ToDoFragment"
+        android:name="com.capstone.saba.ui.notebook.fragment.todo.ToDoFragment"
         android:label="fragment_to_do"
         tools:layout="@layout/fragment_to_do" >
         <action
             android:id="@+id/action_toDoFragment_to_editTodoFragment"
             app:destination="@id/editTodoFragment" />
+
+
         <action
             android:id="@+id/action_toDoFragment_to_createTodoFragment"
             app:destination="@id/createTodoFragment" />
     </fragment>
     <fragment
         android:id="@+id/noteFragment"
-        android:name="com.capstone.saba.NoteFragment"
+        android:name="com.capstone.saba.ui.notebook.fragment.note.NoteFragment"
         android:label="fragment_note"
         tools:layout="@layout/fragment_note" />
     <fragment
