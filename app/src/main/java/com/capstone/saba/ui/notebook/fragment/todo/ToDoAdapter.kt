@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.saba.databinding.ListTodoBinding
-import com.capstone.saba.domain.model.ChatBot
 import com.capstone.saba.domain.model.Todo
-import java.util.ArrayList
+import java.util.*
 
 class ToDoAdapter : RecyclerView.Adapter<ToDoAdapter.ViewHolder>(){
 

@@ -1,7 +1,6 @@
 package com.capstone.saba.ui.notebook.fragment.note
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.saba.databinding.CardNoteBinding

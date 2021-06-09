@@ -1,14 +1,19 @@
 package com.capstone.saba.data.source.remote
 
 import android.util.Log
-import com.capstone.saba.domain.model.*
+import com.capstone.saba.domain.model.ChatBot
+import com.capstone.saba.domain.model.Todo
+import com.capstone.saba.domain.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.subjects.PublishSubject
+import kotlinx.datetime.Clock
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -133,41 +138,12 @@ class RemoteDataSource @Inject constructor(
 
                 }
                 todo.onNext(todosList)
-
-                /*val list = result
-
-                val todos = Todo(
-                    deskripsi = list.toString()
-                )
-                todosList.add(todos)
-                todo.onNext(todosList)*/
-
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents.", exception)
             }
 
-    /*docRef.addSnapshotListener { document, e ->
-            val todosList = ArrayList<Todo>()
-            if (document != null) {
-                Log.d(TAG, "DocumentSnapshot data: ${document.data?.get("coba")}")
-                //val data = document.toObject<Todo>()
 
-                val da = document.get("coba")
-
-                Log.d("REMOTE DATA TODO", da.toString())
-                document.data?.get("coba"). { (s, any) ->
-                   val todos = Todo(
-                       deskripsi = s
-                   )
-                    todosList.add(todos)
-                }
-                todo.onNext(todosList)
-            } else {
-                Log.d(TAG, "No such document")
-            }
-        }
-*/
 
         return todo.toFlowable(BackpressureStrategy.BUFFER)
     }
@@ -181,40 +157,33 @@ class RemoteDataSource @Inject constructor(
         val currentUser = auth.currentUser
 
         val docRefInput = db.collection("chatbot")
-            .document("input")
-            .collection("from-user")
             .document(currentUser?.uid.toString())
+            .collection("input").orderBy("time", Query.Direction.ASCENDING)
+
 
         val docResponse = db.collection("chatbot")
-            .document("response")
-            .collection("for-user")
             .document(currentUser?.uid.toString())
+            .collection("response").orderBy("timestamp", Query.Direction.ASCENDING)
 
-        Log.d("CURRENT USER", auth?.uid!!)
+        Log.d("CURRENT USER", auth.uid!!)
 
         docRefInput.addSnapshotListener { input, e ->
             docResponse.addSnapshotListener { response, e ->
-                val responseObject = response?.toObject<Response>()
-                val inputObject = input?.toObject<Input>()
                 val chatbot = ArrayList<ChatBot>()
-                inputObject?.let {
-                    responseObject?.let { it1 ->
-                        Log.d("ChatBot", "$it\n $it1")
-                        try {
-                            for (i in 0..it.messages.size) {
-                                it1.messages.get(i).get("response")?.let { it2 ->
-                                    val data = ChatBot(
-                                        input = it.messages.get(i),
-                                        response = it2
-                                    )
-                                    chatbot.addAll(listOf(data))
-                                }
-                            }
-                        }catch(e: Exception) {
-                            Log.d("REMOTE ERROR", e.toString())
+                try {
+                    if (input != null) {
+                        for (i in 0..input.documents.size - 1) {
+                            val data = ChatBot(
+                                input = input.documents.get(i).get("messages").toString(),
+                                response = response?.documents?.get(i)?.get("messages").toString()
+                            )
+                            chatbot.add(data)
                         }
                     }
+                } catch (e: Exception) {
+                    Log.d("REMOTE ERROR", e.toString())
                 }
+
                 chatBot.onNext(chatbot)
             }
         }
@@ -226,19 +195,18 @@ class RemoteDataSource @Inject constructor(
         val result = PublishSubject.create<Boolean>()
         val currentUser = auth.currentUser
         val docRefInput = db.collection("chatbot")
-            .document("input")
-            .collection("from-user")
             .document(currentUser?.uid.toString())
+            .collection("input")
 
-
-        currentUser?.uid?.let {
-            docRefInput.update("messages", FieldValue.arrayUnion(messages))
-                .addOnSuccessListener {
-                    result.onNext(true)
-                }.addOnFailureListener {
-                    result.onNext(false)
-                }
-        }
+        docRefInput.add(hashMapOf(
+            "messages" to messages,
+            "time" to "${Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())}"
+        ))
+            .addOnSuccessListener {
+                result.onNext(true)
+            }.addOnFailureListener {
+                result.onNext(false)
+            }
 
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
