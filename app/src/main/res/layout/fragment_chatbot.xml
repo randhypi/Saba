@@ -9,22 +9,41 @@
     android:layout_gravity="top"
     tools:context=".ui.chatbot.ChatbotFragment">
 
-<!--    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"-->
-<!--    app:behavior_hideable="true"-->
-<!--    app:behavior_peekHeight="540dp"-->
 
-    <View
-        android:id="@+id/view_chat"
-        android:layout_width="50dp"
-        android:layout_height="5dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/blue_700"
-        android:backgroundTint="@color/blue_700"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue_200"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white" >
 
-    <!-- TODO: Update blank fragment layout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tv_get_mentor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center_vertical"
+                android:text="@string/get_private_mentor"
+                android:textColor="@color/blue_700"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:backgroundTint="#00438CD0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.appcompat.widget.Toolbar>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -36,8 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_chat"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@id/myToolbar"
         tools:listitem="@layout/item_row_chat" />
 
     <LinearLayout
@@ -47,8 +65,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_chat">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
@@ -76,23 +93,17 @@
                 android:textColor="#000000" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_chat_sent"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/ic_send"
             android:backgroundTint="@color/blue_700"
-            android:clickable="true"
-            android:contentDescription="@string/btn_chat_sent"
-            android:focusable="true"
-            android:src="@drawable/ic_send"
-            app:tint="@color/blue_700" />
+            android:contentDescription="@string/btn_chat_sent"/>
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

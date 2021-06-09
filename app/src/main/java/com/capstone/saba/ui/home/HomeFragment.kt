@@ -63,6 +63,7 @@ class HomeFragment : Fragment() {
                 Log.d(TAG, "$data luar")
                 Log.d(TAG, data.toString())
                 binding.tvGreetings.text = "Hi,\n${data?.name?.split(" ")?.get(0)}"
+
                 Glide
                     .with(this)
                     .load(data?.urlAva)

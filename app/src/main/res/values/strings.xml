@@ -44,4 +44,13 @@
     <string name="note">Note</string>
     <string name="btn_chat_sent">Btn Chat Sent</string>
     <string name="tuliskan_pesan_disini">Tuliskan pesan disini</string>
+    <string name="get_private_mentor">Get private mentor</string>
+    <string name="get_a_private_mentor">Get a Private Mentor</string>
+    <string name="kamu_bisa_membuat_pertanyaan_spesifik_ke_mentor_yang_ahli_di_bidang_nya">Kamu bisa membuat pertanyaan spesifik Ke Mentor yang ahli di Bidang nya</string>
+    <string name="_1_bulan_langganan_n_1_minggu_1_kali_pertemuan_dalam_waktu_1_jam"><b>1 Bulan Langganan</b> <br/> 1   Minggu 1 kali pertemuan dalam waktu 1 jam</string>
+    <string name="our_mentor">Our Mentor</string>
+    <string name="bagoes">Bagoes</string>
+    <string name="ml_expert">Machine Learning <br/> Expert</string>
+    <string name="dion_sunardi">Dion Sunardi</string>
+    <string name="android_developer_expert">Android Developer<br/> Expert</string>
 </resources>

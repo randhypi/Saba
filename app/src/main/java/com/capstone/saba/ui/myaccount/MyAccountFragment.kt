@@ -2,18 +2,16 @@ package com.capstone.saba.ui.myaccount
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.capstone.saba.MyApplication
 import com.capstone.saba.R
-import com.capstone.saba.databinding.FragmentLoginBinding
 import com.capstone.saba.databinding.FragmentMyAccountBinding
-import com.capstone.saba.ui.login.LoginFragment
-import com.capstone.saba.ui.login.SignInViewModel
 import com.capstone.saba.vm.ViewModelFactory
 import javax.inject.Inject
 
@@ -50,6 +48,21 @@ class MyAccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        myAccountViewModel.getData().observe(viewLifecycleOwner,{data->
+            Glide
+                .with(this)
+                .load(data?.urlAva)
+                .centerCrop()
+                .placeholder(R.drawable.ic_downloading)
+                .into(binding.circleImageView)
+
+            binding.tvNamaLengkap.text = data.name
+            binding.tvEmail.text = data.email
+            binding.tvTtl.text = data.birthOfDate
+
+        })
+
 
         binding.btnSignout.setOnClickListener{
             myAccountViewModel.signOut()

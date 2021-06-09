@@ -137,7 +137,11 @@
         android:id="@+id/chatbotFragment"
         android:name="com.capstone.saba.ui.chatbot.ChatbotFragment"
         android:label="fragment_chatbot"
-        tools:layout="@layout/fragment_chatbot" />
+        tools:layout="@layout/fragment_chatbot" >
+        <action
+            android:id="@+id/action_chatbotFragment_to_ourMentorFragment"
+            app:destination="@id/ourMentorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editTodoFragment"
         android:name="com.capstone.saba.ui.notebook.fragment.todo.EditTodoFragment"
@@ -147,6 +151,11 @@
         android:name="com.capstone.saba.ui.notebook.fragment.todo.CreateTodoFragment"
         android:label="fragment_create_todo"
         tools:layout="@layout/fragment_create_todo" />
+    <fragment
+        android:id="@+id/ourMentorFragment"
+        android:name="com.capstone.saba.ui.mentor.OurMentorFragment"
+        android:label="fragment_our_mentor"
+        tools:layout="@layout/fragment_our_mentor" />
 
 
 </navigation>
