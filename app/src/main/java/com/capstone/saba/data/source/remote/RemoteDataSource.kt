@@ -1,13 +1,14 @@
 package com.capstone.saba.data.source.remote
 
+import android.net.Uri
 import android.util.Log
 import com.capstone.saba.domain.model.ChatBot
-import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.storage.StorageReference
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.subjects.PublishSubject
@@ -22,10 +23,14 @@ import javax.inject.Singleton
 class RemoteDataSource @Inject constructor(
     private val db: FirebaseFirestore,
     private val auth: FirebaseAuth,
+    private val storageReference: StorageReference,
 ) {
 
     companion object {
         val TAG = RemoteDataSource::class.java.simpleName
+        val SUCCES_UPLOAD = "succes"
+        val FAILURE_UPLOAD = "failure"
+        val ON_PROGRESS = "onprogess"
     }
 
 
@@ -57,7 +62,6 @@ class RemoteDataSource @Inject constructor(
                         .set(user)
                         .addOnSuccessListener {
                             result.onNext(true)
-
                         }
                         .addOnFailureListener { e ->
                             result.onNext(false)
@@ -100,7 +104,6 @@ class RemoteDataSource @Inject constructor(
                         gender = userData?.gender.toString(),
                         name = userData?.name.toString(),
                         birthOfDate = userData?.birthOfDate.toString(),
-                        urlAva = userData?.urlAva.toString()
                     )
                 )
             } else {
@@ -114,39 +117,6 @@ class RemoteDataSource @Inject constructor(
 
 
     fun signOut() = auth.signOut()
-
-    fun getNoteTodo(): Flowable<List<Todo>> {
-        val todo = PublishSubject.create<List<Todo>>()
-        val currentUser = auth.currentUser
-
-        val userId = currentUser?.uid
-
-        db.collection("users").document(userId.toString()).collection("todo")
-            .get()
-            .addOnSuccessListener { result ->
-
-                val todoList = ArrayList<Todo>()
-
-                for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-
-                    val todos = Todo(
-                        deskripsi = document.get("todo").toString()
-                    )
-                    todoList.add(todos)
-                }
-
-                todo.onNext(todoList)
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
-            }
-
-        return todo.toFlowable(BackpressureStrategy.BUFFER)
-    }
-
-
-
 
     fun getChat(): Flowable<List<ChatBot>> {
 
@@ -162,7 +132,8 @@ class RemoteDataSource @Inject constructor(
             .document(currentUser?.uid.toString())
             .collection("response").orderBy("timestamp", Query.Direction.ASCENDING)
 
-        Log.d("CURRENT USER", auth.uid!!)
+        auth.uid?.let {   Log.d("CURRENT USER", it) }
+
 
         docRefInput.addSnapshotListener { input, e ->
             docResponse.addSnapshotListener { response, e ->
@@ -187,6 +158,37 @@ class RemoteDataSource @Inject constructor(
         return chatBot.toFlowable(BackpressureStrategy.BUFFER)
     }
 
+    fun uploadImage(uri: Uri,name: String): Flowable<String> {
+        val value = PublishSubject.create<String>()
+        val ref = storageReference.child("images/avatar/" + name)
+
+        ref.putFile(uri)
+            .addOnSuccessListener {
+               value.onNext(SUCCES_UPLOAD)
+            }
+            .addOnFailureListener{
+                value.onNext(it.toString())
+            }
+            .addOnProgressListener {
+                value.onNext(ON_PROGRESS)
+            }
+        return value.toFlowable(BackpressureStrategy.BUFFER)
+    }
+
+    fun getAva(name: String): Flowable<String> {
+        val value = PublishSubject.create<String>()
+        val ref = storageReference.child("images/avatar/" + name)
+
+        ref.downloadUrl
+            .addOnSuccessListener {
+                value.onNext(it.toString())
+            }
+            .addOnFailureListener{
+                value.onNext(it.toString())
+            }
+
+        return value.toFlowable(BackpressureStrategy.BUFFER)
+    }
 
     fun sentChat(messages: String): Flowable<Boolean> {
         val result = PublishSubject.create<Boolean>()
@@ -207,5 +209,7 @@ class RemoteDataSource @Inject constructor(
 
         return result.toFlowable(BackpressureStrategy.BUFFER)
     }
+
+
 
 }

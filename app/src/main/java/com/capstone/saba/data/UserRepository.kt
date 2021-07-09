@@ -1,9 +1,9 @@
 package com.capstone.saba.data
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import com.capstone.saba.data.source.remote.RemoteDataSource
 import com.capstone.saba.domain.model.ChatBot
-import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import com.capstone.saba.domain.repository.IUserRepository
 import io.reactivex.Flowable
@@ -37,9 +37,9 @@ class UserRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
 
     override fun signOut() = remoteDataSource.signOut()
+    override fun uploadAva(uri: Uri,name: String): Flowable<String> = remoteDataSource.uploadImage(uri,name)
+    override fun getAva(name: String): Flowable<String> = remoteDataSource.getAva(name)
 
-    override fun getTodo(): Flowable<List<Todo>> =
-        remoteDataSource.getNoteTodo()
 
     override fun getChat(): Flowable<List<ChatBot>> = remoteDataSource.getChat()
 

@@ -11,7 +11,7 @@ object DummyOnBoarding {
         onBoarding.add(
             OnBoardingModel(
                 R.drawable.ic_icon1,
-                "can be your diary",
+                "dapat menjadi catatan untuk mu",
                 R.drawable.ic_button_next
             )
         )
@@ -20,8 +20,7 @@ object DummyOnBoarding {
         onBoarding.add(
             OnBoardingModel(
                 R.drawable.ic_icon2,
-                "set your reminder\n" +
-                        " from your homework",
+                "Waktu adalah uang",
                 R.drawable.ic_button_next
             )
         )
@@ -29,8 +28,7 @@ object DummyOnBoarding {
         onBoarding.add(
             OnBoardingModel(
                 R.drawable.icontthree,
-                "ask anything \n" +
-                        "to add to your insight",
+                "Tanyakan terkait dengan fisika",
                 R.drawable.ic_button_finish_onboarding
             )
         )

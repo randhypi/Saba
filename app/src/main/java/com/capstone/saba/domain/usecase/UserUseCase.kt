@@ -1,7 +1,7 @@
 package com.capstone.saba.domain.usecase
 
+import android.net.Uri
 import com.capstone.saba.domain.model.ChatBot
-import com.capstone.saba.domain.model.Todo
 import com.capstone.saba.domain.model.User
 import io.reactivex.Flowable
 
@@ -19,7 +19,9 @@ interface UserUseCase {
 
     fun signOut()
 
-    fun getTodo(): Flowable<List<Todo>>
+   fun uploadAva(uri: Uri,name: String): Flowable<String>
+
+    fun getAva(name: String): Flowable<String>
 
     fun getChat(): Flowable<List<ChatBot>>
 

@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-parcelize'
     id "androidx.navigation.safeargs"
     id "kotlin-kapt"
-    id'com.google.gms.google-services'
+    id 'com.google.gms.google-services'
 }
 
 
@@ -38,6 +38,10 @@ android {
 
     buildFeatures {
         viewBinding true
+    }
+
+    dataBinding{
+        enabled true
     }
 
 }
@@ -106,10 +110,11 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    implementation "androidx.fragment:fragment-ktx:1.3.4"
+    implementation "androidx.fragment:fragment-ktx:1.3.5"
 
 
 //    DateTime
     implementation "org.jetbrains.kotlinx:kotlinx-datetime:0.2.1"
+    implementation 'com.google.firebase:firebase-storage-ktx'
 
 }

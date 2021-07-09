@@ -15,6 +15,8 @@ import com.bumptech.glide.Glide
 import com.capstone.saba.MyApplication
 import com.capstone.saba.R
 import com.capstone.saba.databinding.FragmentHomeBinding
+import com.capstone.saba.ui.chatbot.ChatbotFragment
+import com.capstone.saba.ui.myaccount.MyAccountFragment
 import com.capstone.saba.vm.ViewModelFactory
 import javax.inject.Inject
 
@@ -56,7 +58,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
-
+        activity?.let {
+            val childFragment: Fragment = ChatbotFragment()
+            val transaction = childFragmentManager.beginTransaction()
+            transaction.replace(R.id.parent_fragment_container, childFragment).commit()
+        }
 
         if (getValueAuth() == true){
             homeViewModel.getData().observe(viewLifecycleOwner, { data ->
@@ -64,30 +70,26 @@ class HomeFragment : Fragment() {
                 Log.d(TAG, data.toString())
                 binding.tvGreetings.text = "Hi,\n${data?.name?.split(" ")?.get(0)}"
 
-                Glide
-                    .with(this)
-                    .load(data?.urlAva)
-                    .centerCrop()
-                    .placeholder(R.drawable.ic_downloading)
-                    .into(binding.imageView2)
+               homeViewModel.getAva(data.id).observe(viewLifecycleOwner,{
+                    Log.d(MyAccountFragment.TAG,it)
+                    Glide
+                        .with(this)
+                        .load(it)
+                        .centerCrop()
+                        .placeholder(R.drawable.ic_downloading)
+                        .into(binding.imageView2)
+                })
+
 
                 binding.imageView2.setOnClickListener {
                     view.findNavController().navigate(R.id.action_homeFragment_to_myAccountFragment)
                 }
-
-                binding.btnAssisten.setOnClickListener {
-                   view.findNavController().navigate(R.id.action_homeFragment_to_chatbotFragment)
-                }
-
-                binding.btnHome.setOnClickListener {
-                    view.findNavController().navigate(R.id.action_homeFragment_to_notebookFragment)
-                }
-
-
             })
         }else if(getValueAuth() == false){
             view.findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
         }
+
+
     }
 
 

@@ -1,10 +1,9 @@
 package com.capstone.saba.vm
 
-import android.content.Context
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.saba.di.AppScope
-import com.capstone.saba.ui.onboarding.OnBoardingViewModel
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -20,3 +19,5 @@ class ViewModelFactory @Inject constructor(
         return creator.get() as T
     }
 }
+
+

@@ -9,4 +9,5 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val userUseCase: UserUseCase) : ViewModel() {
     fun getData(): LiveData<User> =  LiveDataReactiveStreams.fromPublisher(userUseCase.getDataUser())
+    fun getAva(name: String): LiveData<String> = LiveDataReactiveStreams.fromPublisher(userUseCase.getAva(name))
 }
