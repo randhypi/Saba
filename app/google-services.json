@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "360908336709",
-    "project_id": "b21-cap0415",
-    "storage_bucket": "b21-cap0415.appspot.com"
+    "project_number": "157127040692",
+    "project_id": "saba-skripsi",
+    "storage_bucket": "saba-skripsi.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:360908336709:android:69a3a89e5c8f5df5133d2c",
+        "mobilesdk_app_id": "1:157127040692:android:322d91f03ddabeb824c1e1",
         "android_client_info": {
           "package_name": "com.capstone.saba"
         }
       },
       "oauth_client": [
         {
-          "client_id": "360908336709-cvoulh9edtbfc9nc4sf8doqmd98ldv8k.apps.googleusercontent.com",
+          "client_id": "157127040692-r9g3jrcuv656evqfnskgbs5us48a6djl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.capstone.saba",
+            "certificate_hash": "0f08022ba5c77819a66120c89fdfd91f6fdc590a"
+          }
+        },
+        {
+          "client_id": "157127040692-ld9uc8pffmn0ha3flp58bga7uf4t5emp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQSmjEFxI0Tfe9GUWeklHXdxW8jVZT6Es"
+          "current_key": "AIzaSyDioK4E7YxqJR8spZwioy8Prpq489CA_gQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "360908336709-cvoulh9edtbfc9nc4sf8doqmd98ldv8k.apps.googleusercontent.com",
+              "client_id": "157127040692-ld9uc8pffmn0ha3flp58bga7uf4t5emp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
